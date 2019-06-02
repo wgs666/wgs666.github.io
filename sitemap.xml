@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://wgs666.github.io/2019/06/02/hello-world/</loc>
+    
+    <lastmod>2019-06-02T14:20:31.553Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://wgs666.github.io/2019/06/02/MLE/</loc>
     
-    <lastmod>2019-06-02T13:22:13.113Z</lastmod>
+    <lastmod>2019-06-02T14:19:17.870Z</lastmod>
     
   </url>
   
@@ -47,13 +54,6 @@
     <loc>https://wgs666.github.io/tags/index%20-%20%E5%89%AF%E6%9C%AC.html</loc>
     
     <lastmod>2019-06-02T10:31:56.586Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wgs666.github.io/2019/06/02/hello-world/</loc>
-    
-    <lastmod>2019-06-02T09:40:10.866Z</lastmod>
     
   </url>
   
