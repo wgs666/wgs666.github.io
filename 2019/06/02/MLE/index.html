@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>最大似然估计 | 路漫漫其修远兮，吾将上下而求索</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content>
+    <meta name="description" content="最大似然估计（MLE）什么是最大似然估计？最大似然估计（Maximum Likelihood Estimation）是一种参数估计的方法。其核心思想是：找到参数$\theta$的一个估计值，使得当前样本出现的可能性最大。 设总体$X$属于离散型，其分布律$P{X=x}=p(x;\theta), \theta \in \Theta$的形式为已知，$\theta$为待估参数，$\Theta$是$\th">
+<meta property="og:type" content="article">
+<meta property="og:title" content="最大似然估计">
+<meta property="og:url" content="https://wgs666.github.io/2019/06/02/MLE/index.html">
+<meta property="og:site_name" content="路漫漫其修远兮，吾将上下而求索">
+<meta property="og:description" content="最大似然估计（MLE）什么是最大似然估计？最大似然估计（Maximum Likelihood Estimation）是一种参数估计的方法。其核心思想是：找到参数$\theta$的一个估计值，使得当前样本出现的可能性最大。 设总体$X$属于离散型，其分布律$P{X=x}=p(x;\theta), \theta \in \Theta$的形式为已知，$\theta$为待估参数，$\Theta$是$\th">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-06-02T12:35:47.672Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="最大似然估计">
+<meta name="twitter:description" content="最大似然估计（MLE）什么是最大似然估计？最大似然估计（Maximum Likelihood Estimation）是一种参数估计的方法。其核心思想是：找到参数$\theta$的一个估计值，使得当前样本出现的可能性最大。 设总体$X$属于离散型，其分布律$P{X=x}=p(x;\theta), \theta \in \Theta$的形式为已知，$\theta$为待估参数，$\Theta$是$\th">
+    
+        <link rel="alternate" type="application/atom+xml" title="路漫漫其修远兮，吾将上下而求索" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <link href="/css/prism/prism-tomorrow-night.css" rel="stylesheet">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-list-ul"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/back_blue.png)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/wgs.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Guangsheng Wu <br>吴光生</h5>
+          <a href="mailto:undefined" class="mail">
+        </a></hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives/">
+                <i class="icon icon-lg icon-archives"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories/">
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/wgs666">
+                <i class="icon icon-lg icon-github"></i>
+                代码
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about/">
+                <i class="icon icon-lg icon-info-circle"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">最大似然估计</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">最大似然估计</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-06-02T05:25:12.000Z" itemprop="datePublished" class="page-time">
+  2019-06-02
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#最大似然估计（MLE）"><span class="post-toc-text">最大似然估计（MLE）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是最大似然估计？"><span class="post-toc-text">什么是最大似然估计？</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#为什么要有参数估计？"><span class="post-toc-text">为什么要有参数估计？</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#举例"><span class="post-toc-text">举例</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-text">总结</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-MLE" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">最大似然估计</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-06-02 13:25:12" datetime="2019-06-02T05:25:12.000Z" itemprop="datePublished">2019-06-02</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="最大似然估计（MLE）"><a href="#最大似然估计（MLE）" class="headerlink" title="最大似然估计（MLE）"></a>最大似然估计（MLE）</h1><h2 id="什么是最大似然估计？"><a href="#什么是最大似然估计？" class="headerlink" title="什么是最大似然估计？"></a>什么是最大似然估计？</h2><p>最大似然估计（Maximum Likelihood Estimation）是一种参数估计的方法。其核心思想是：找到参数$\theta$的一个估计值，使得当前样本出现的可能性最大。</p>
+<p>设总体$X$属于离散型，其分布律$P{X=x}=p(x;\theta), \theta \in \Theta$的形式为已知，$\theta$为待估参数，$\Theta$是$\theta$可能取值的范围。设$X_1,X_2,\cdots,X_n$是来自$X$的样本，则$X_1,X_2,\cdots,X_n$的联合分布律为：</p>
+<script type="math/tex; mode=display">
+\prod_{i=1}^{n}p(x_i;\theta)</script><p>样本$X_1,X_2,\cdots,X_n$取到观察值$x_1,x_2,\cdots,x_n$的概率，即事件${X_1=x_1,X_2=x_2,\cdots,X_n=x_n}$发生的概率为：</p>
+<script type="math/tex; mode=display">
+L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}p(x_i;\theta),\theta\in\Theta</script><p>这一概率随$\theta$的取值而变化，它是$\theta$的函数，$L(\theta)$称为样本的<strong>似然函数</strong>。</p>
+<p>最大似然估计法，就是固定样本观察值$x_1,x_2,\cdots,x_n$，在参数$\theta$取值的可能范围$\Theta$内挑选出一个$\hat\theta$，使得似然函数$L(x_1,x_2,\cdots,x_n;\theta)$达到最大。即：</p>
+<script type="math/tex; mode=display">
+\hat\theta=\mathop{\arg\max}_{\theta\in\Theta}L(x_1,x_2,\cdots,x_n;\theta)</script><p>这样得到的$\hat\theta$与样本值$x_1,x_2,\cdots,x_n$有关，常记为$\hat\theta(x_1,x_2,\cdots,x_n)$，称为参数$\theta$的<strong>最大似然估计值</strong>，而相应的统计量$\hat\theta(X_1,X_2,\cdots,X_n)$称为参数$\theta$的<strong>最大似然估计量</strong>。</p>
+<h2 id="为什么要有参数估计？"><a href="#为什么要有参数估计？" class="headerlink" title="为什么要有参数估计？"></a>为什么要有参数估计？</h2><p>当模型已定，参数未知时。</p>
+<p>例如，假设我们知道全国人民的身高服从正态分布，但不知道均值和方差。这时可以通过采样，观察其结果，然后再用样本数据的结果推出正态分布的均值与方差的最大概率值，这样就可以知道全国人民的身高分布的函数。</p>
+<h2 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h2><p><span>1. </span> 抛硬币。现有一个正反面不是很均匀的硬币，如果正面朝上记为H，反面朝上记为T，抛10次的结果如下：</p>
+<p>   T, T, T, H, T, T, T, H, T, T</p>
+<p>   求这个硬币正面朝上的概率有多大？</p>
+<p>   很显然，这个概率是0.2。现在用MLE的思想来求解它。</p>
+<p>   设$x_1,x_2,\cdots,x_n$是相应于样本$X_1,X_2,\cdots,X_n$的一个样本值。</p>
+<p>   不妨用$x_i=1$表示正面朝上，$x_i=0$表示反面朝上</p>
+<p>   设正面朝上的概率为$\theta$，抛硬币服从二项分布$X \sim b(1,\theta)$，$X$的分布律为：</p>
+<script type="math/tex; mode=display">
+   P\{X=x\}=p(x;\theta)=\theta^x (1-\theta)^{1-x},    x=0,1</script><p>   似然函数为：</p>
+<script type="math/tex; mode=display">
+   L(\theta)=\prod_{i=1}^{n}p(x_i;\theta)=\prod_{i=1}^{n}\theta^{x_i}(1-\theta)^{1-x_i}</script><p>   取对数后，为</p>
+<script type="math/tex; mode=display">
+   \begin{align*}
+   ln L(\theta)&=ln\prod_{i=1}^{n}\theta^{x_i}(1-\theta)^{1-x_i}\\
+   &=\sum_{i=1}^{n}ln\{\theta^{x_i}(1-\theta)^{1-x_i}\}\\
+   &=\sum_{i=1}^{n}[ln\theta^{x_i}+ln(1-\theta)^{1-x_i}]\\
+   &=\sum_{i=1}^{n}[x_iln\theta+(1-x_i)ln(1-\theta)]\\
+   &=\sum_{i=1}^{n}x_iln\theta+(n-\sum_{i=1}^{n}x_i)ln(1-\theta)
+   \end{align*}</script><p>   求导：</p>
+<script type="math/tex; mode=display">
+   \frac{\partial ln L(\theta)}{\partial \theta}=\frac{\sum_{i=1}^{n} x_i}{\theta}-\frac{n-\sum_{i=1}^{n} x_i}{1-\theta}</script><p>   令$\frac{\partial ln L(\theta)}{\partial \theta}=0$，可得：</p>
+<script type="math/tex; mode=display">
+   \hat \theta = \frac{\sum_{i=1}^{n} x_i}{n}</script><p>   可知概率$\hat \theta=0.2$</p>
+<p><span>2. </span> 设$X \sim N(\mu, \sigma^2)$, $\mu, \sigma^2$为未知参数，$x_1,x_2,\cdots,x_n$是来自$X$的一个样本值。求$\mu, \sigma^2$的最大似然估计量。</p>
+<p>   解：$X$的概率密度为：</p>
+<script type="math/tex; mode=display">
+   f(x;\mu,\sigma^2)=\frac{1}{\sqrt{2\pi}\sigma}exp[-\frac{1}{2\sigma^2}(x-\mu)^2]</script><p>   似然函数为：</p>
+<script type="math/tex; mode=display">
+   \begin{align*}
+   L(\mu,\sigma^2)&=\prod_{i=1}^n \frac{1}{\sqrt{2\pi}\sigma}exp[-\frac{1}{2\sigma^2}(x_i-\mu)^2]\\
+   &=(\frac{1}{\sqrt{2\pi}\sigma})^n exp[-\frac{1}{2\sigma^2}\sum_{i=1}^n (x_i-\mu)^2]\\
+   &=(\frac{1}{2\pi \sigma^2})^{\frac{n}{2}} exp[-\frac{1}{2\sigma^2}\sum_{i=1}^n (x_i-\mu)^2]\\
+   &=(2\pi)^{-\frac{n}{2}}(\sigma^2)^{-\frac{n}{2}}exp[-\frac{1}{2\sigma^2}\sum_{i=1}^n (x_i-\mu)^2]
+   \end{align*}</script><p>   它的对数：</p>
+<script type="math/tex; mode=display">
+   ln L(\mu,\sigma^2)=-\frac{n}{2}ln(2\pi)-\frac{n}{2}ln(\sigma^2)-\frac{1}{2\sigma^2}\sum_{i=1}^n (x_i-\mu)^2</script><p>   令</p>
+<script type="math/tex; mode=display">
+   \left\{
+       \begin{array}{l}
+           \frac{\partial ln L(\mu,\sigma^2)}{\partial \mu}=\frac{1}{\sigma^2}\Sigma_{i=1}^n(x_i-\mu)=0\\
+
+           \frac{\partial ln L(\mu,\sigma^2)}{\partial \sigma^2}= -\frac{n}{2\sigma^2} + \frac{1}{2 \sigma^4}\sum_{i=1}^n (x_i-\mu)^2=0
+       \end{array}
+   \right.</script><p>   联合求解，得到参数$\mu$和$\sigma^2$的最大似然估计值分别为：</p>
+<script type="math/tex; mode=display">
+\left\{
+       \begin{array}{l}
+           \hat \mu = \overline x = \frac{1}{n} \sum_{i=1}^n x_i\\
+
+           \hat \sigma^2 = \frac{1}{n} \sum_{i=1}^n (x_i-\overline x)^2
+       \end{array}
+   \right.</script><p>   相应的最大似然估计量分别为：     $\hat \mu=\bar X$,       $\hat \sigma^2=\frac{1}{n}\sum_{i=1}^n (X_i- \overline X)$   </p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>求最大似然估计值的一般步骤：</p>
+<p>（1）写出总体$X$的分布律$p(x; \theta)$（$X$为离散型随机变量）或者概率密度$f(x; \theta)$（$X$为连续型随机变量）</p>
+<p>（2）写出样本的似然函数$L(\theta)$ </p>
+<p>离散型：</p>
+<script type="math/tex; mode=display">
+L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}p(x_i;\theta)</script><p>连续型：</p>
+<script type="math/tex; mode=display">
+L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}f(x_i;\theta)</script><p>（3）对似然函数取对数     $ln L(\theta)$</p>
+<p>（4）求偏导     $\frac{\partial ln L(\theta)}{\partial \theta}$</p>
+<p>（5）解方程（组） $\frac{\partial ln L(\theta)}{\partial \theta}=0$，得到参数$\theta$的最大似然估计值$\hat \theta$</p>
+<p>注：参数可能是一个（如例1，只有一个参数$\theta$），也可能是一组（如例2，有两个参数：$\mu, \sigma^2$），一组参数时，求解方法类似。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-06-02T12:35:47.672Z" itemprop="dateUpdated">2019-06-02 20:35:47</time>
+</span><br>
+
+
+        
+        文章发布地址：<a href="/2019/06/02/MLE/" target="_blank" rel="external">https://wgs666.github.io/2019/06/02/MLE/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://wgs666.github.io">
+            <img src="/img/wgs.jpg" alt="Guangsheng Wu <br>吴光生">
+            Guangsheng Wu <br>吴光生
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://wgs666.github.io/2019/06/02/MLE/&title=《最大似然估计》 — 路漫漫其修远兮，吾将上下而求索&pic=https://wgs666.github.io/img/wgs.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wgs666.github.io/2019/06/02/MLE/&title=《最大似然估计》 — 路漫漫其修远兮，吾将上下而求索&source=学习笔记" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://wgs666.github.io/2019/06/02/MLE/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《最大似然估计》 — 路漫漫其修远兮，吾将上下而求索&url=https://wgs666.github.io/2019/06/02/MLE/&via=https://wgs666.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://wgs666.github.io/2019/06/02/MLE/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/06/02/hello-world/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Hello World</h4>
+      </a>
+    </div>
+  
+
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        感谢支持！
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.png" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-item switch">切换</span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+            <p>
+                
+                    <span>
+                        <a href="/atom.xml" target="_blank" class="rss" title="rss">
+                            <i class="icon icon-lg icon-rss"></i>
+                        </a>
+                    </span>
+                    
+                        <span>
+                            博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a>
+                        </span>
+            </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>
+                Guangsheng Wu <br>吴光生 &copy;
+                    
+                        2018 -
+                            
+                                2019
+            </span>
+            <span>
+                
+                        Power by
+                        <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+                        <a href="https://github.com/abelsu7/hexo-theme-indigo-plus" target="_blank">indigo plus</a>
+                        <p>Hosted by <a href="https://coding.net/pages" style="font-weight: bold">Coding Pages</a></p>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+<a href="javascript:;" id="gobottom" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-comments"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://wgs666.github.io/2019/06/02/MLE/&title=《最大似然估计》 — 路漫漫其修远兮，吾将上下而求索&pic=https://wgs666.github.io/img/wgs.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wgs666.github.io/2019/06/02/MLE/&title=《最大似然估计》 — 路漫漫其修远兮，吾将上下而求索&source=学习笔记" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://wgs666.github.io/2019/06/02/MLE/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《最大似然估计》 — 路漫漫其修远兮，吾将上下而求索&url=https://wgs666.github.io/2019/06/02/MLE/&via=https://wgs666.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://wgs666.github.io/2019/06/02/MLE/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABxUlEQVR42u3aQWoDMQwF0Nz/0il0VWhn8r8146TwvApOsJ+yELbkxyMez+/xe+bnOPplvuZlAxcXd8x9no5z7vkKR7vkK/wREi4u7kbueaI5D+N8hXNibsDFxf1MbnLeaNMWLi7uf+cmqS0JZmvexcXFHXCTy89VJY8k+Avuari4uANuu/0dn2+s7+Li4pbcZznyA1CbzqLdcXFxt3CTNklLnJRFojSHi4u7kZtce9pCSZLI8rYNLi7uHu7ktpQ81VpLWIczuLi4G7mTJ1nJTHsMepHIcHFxN3Lb1ml9aVkK7LCKg4uLext3rX/RlkTb+VFHCBcX9yJuXgSZl0QnQeLi4u7n5seL/Oiz1o598Wfh4uLezL0KmpdQ1w5PuLi47+LOm6nFxmVJBRcXdye3bXu0zyzagmzyZ+Hi4t7NbRsnk3HB8y9cXNyN3ElDpU1hkyBxcXF3cvORE/NLUdEHxsXF3cJtE0qb4JI27dq3uLi4d3PXkld+ZUoKpsX6uLi4G7lrRdK8eJpn0OIdGS4u7gdw20bpJIALEhkuLu5G7rywkneAcXFx38ttn2e1ia/FXVAWwcXFHXDbgmkeTHspwsXF/QDuF+/2LuXQkDpVAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/node-waves@0.7.6/src/js/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- <script async src="//cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script> -->
+<!-- <script async src="//cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script> -->
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<script src="/js/prism.js"></script>
+<script src="/js/prism-vim.js"></script>
+</body>
+</html>
