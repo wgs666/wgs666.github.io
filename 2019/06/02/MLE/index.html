@@ -14,7 +14,7 @@
     
     
     
-    <title>最大似然估计 | 路漫漫其修远兮，吾将上下而求索</title>
+    <title>极大似然估计 | 路漫漫其修远兮，吾将上下而求索</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
@@ -23,14 +23,14 @@
     <meta name="keywords" content>
     <meta name="description" content="最大似然估计（MLE）什么是最大似然估计？最大似然估计（Maximum Likelihood Estimation）是一种参数估计的方法。其核心思想是：找到参数$\theta$的一个估计值，使得当前样本出现的可能性最大。 设总体$X$属于离散型，其分布律$P{X=x}=p(x;\theta), \theta \in \Theta$的形式为已知，$\theta$为待估参数，$\Theta$是$\th">
 <meta property="og:type" content="article">
-<meta property="og:title" content="最大似然估计">
+<meta property="og:title" content="极大似然估计">
 <meta property="og:url" content="https://wgs666.github.io/2019/06/02/MLE/index.html">
 <meta property="og:site_name" content="路漫漫其修远兮，吾将上下而求索">
 <meta property="og:description" content="最大似然估计（MLE）什么是最大似然估计？最大似然估计（Maximum Likelihood Estimation）是一种参数估计的方法。其核心思想是：找到参数$\theta$的一个估计值，使得当前样本出现的可能性最大。 设总体$X$属于离散型，其分布律$P{X=x}=p(x;\theta), \theta \in \Theta$的形式为已知，$\theta$为待估参数，$\Theta$是$\th">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-02T12:35:47.672Z">
+<meta property="og:updated_time" content="2019-06-02T13:22:13.113Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="最大似然估计">
+<meta name="twitter:title" content="极大似然估计">
 <meta name="twitter:description" content="最大似然估计（MLE）什么是最大似然估计？最大似然估计（Maximum Likelihood Estimation）是一种参数估计的方法。其核心思想是：找到参数$\theta$的一个估计值，使得当前样本出现的可能性最大。 设总体$X$属于离散型，其分布律$P{X=x}=p(x;\theta), \theta \in \Theta$的形式为已知，$\theta$为待估参数，$\Theta$是$\th">
     
         <link rel="alternate" type="application/atom+xml" title="路漫漫其修远兮，吾将上下而求索" href="/atom.xml">
@@ -120,7 +120,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">最大似然估计</div>
+        <div class="flex-col header-title ellipsis">极大似然估计</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -142,10 +142,10 @@
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">最大似然估计</h1>
+        <h1 class="title">极大似然估计</h1>
         <h5 class="subtitle">
             
-                <time datetime="2019-06-02T05:25:12.000Z" itemprop="datePublished" class="page-time">
+                <time datetime="2019-06-02T05:23:12.000Z" itemprop="datePublished" class="page-time">
   2019-06-02
 </time>
 
@@ -173,9 +173,9 @@
 <article id="post-MLE" class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">最大似然估计</h1>
+        <h1 class="post-card-title">极大似然估计</h1>
         <div class="post-meta">
-            <time class="post-time" title="2019-06-02 13:25:12" datetime="2019-06-02T05:25:12.000Z" itemprop="datePublished">2019-06-02</time>
+            <time class="post-time" title="2019-06-02 13:23:12" datetime="2019-06-02T05:23:12.000Z" itemprop="datePublished">2019-06-02</time>
 
             
 
@@ -200,9 +200,12 @@ L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}p(x_i;\theta),\theta\in\Th
 \hat\theta=\mathop{\arg\max}_{\theta\in\Theta}L(x_1,x_2,\cdots,x_n;\theta)</script><p>这样得到的$\hat\theta$与样本值$x_1,x_2,\cdots,x_n$有关，常记为$\hat\theta(x_1,x_2,\cdots,x_n)$，称为参数$\theta$的<strong>最大似然估计值</strong>，而相应的统计量$\hat\theta(X_1,X_2,\cdots,X_n)$称为参数$\theta$的<strong>最大似然估计量</strong>。</p>
 <h2 id="为什么要有参数估计？"><a href="#为什么要有参数估计？" class="headerlink" title="为什么要有参数估计？"></a>为什么要有参数估计？</h2><p>当模型已定，参数未知时。</p>
 <p>例如，假设我们知道全国人民的身高服从正态分布，但不知道均值和方差。这时可以通过采样，观察其结果，然后再用样本数据的结果推出正态分布的均值与方差的最大概率值，这样就可以知道全国人民的身高分布的函数。</p>
-<h2 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h2><p><span>1. </span> 抛硬币。现有一个正反面不是很均匀的硬币，如果正面朝上记为H，反面朝上记为T，抛10次的结果如下：</p>
-<p>   T, T, T, H, T, T, T, H, T, T</p>
-<p>   求这个硬币正面朝上的概率有多大？</p>
+<h2 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h2><ol>
+<li><p>抛硬币。现有一个正反面不是很均匀的硬币，如果正面朝上记为H，反面朝上记为T，抛10次的结果如下：</p>
+<p>T, T, T, H, T, T, T, H, T, T</p>
+<p>求这个硬币正面朝上的概率有多大？</p>
+</li>
+</ol>
 <p>   很显然，这个概率是0.2。现在用MLE的思想来求解它。</p>
 <p>   设$x_1,x_2,\cdots,x_n$是相应于样本$X_1,X_2,\cdots,X_n$的一个样本值。</p>
 <p>   不妨用$x_i=1$表示正面朝上，$x_i=0$表示反面朝上</p>
@@ -223,43 +226,45 @@ L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}p(x_i;\theta),\theta\in\Th
    \frac{\partial ln L(\theta)}{\partial \theta}=\frac{\sum_{i=1}^{n} x_i}{\theta}-\frac{n-\sum_{i=1}^{n} x_i}{1-\theta}</script><p>   令$\frac{\partial ln L(\theta)}{\partial \theta}=0$，可得：</p>
 <script type="math/tex; mode=display">
    \hat \theta = \frac{\sum_{i=1}^{n} x_i}{n}</script><p>   可知概率$\hat \theta=0.2$</p>
-<p><span>2. </span> 设$X \sim N(\mu, \sigma^2)$, $\mu, \sigma^2$为未知参数，$x_1,x_2,\cdots,x_n$是来自$X$的一个样本值。求$\mu, \sigma^2$的最大似然估计量。</p>
-<p>   解：$X$的概率密度为：</p>
+<ol>
+<li><p>设$X \sim N(\mu, \sigma^2)$, $\mu, \sigma^2$为未知参数，$x_1,x_2,\cdots,x_n$是来自$X$的一个样本值。求$\mu, \sigma^2$的最大似然估计量。</p>
+<p>解：$X$的概率密度为：</p>
 <script type="math/tex; mode=display">
-   f(x;\mu,\sigma^2)=\frac{1}{\sqrt{2\pi}\sigma}exp[-\frac{1}{2\sigma^2}(x-\mu)^2]</script><p>   似然函数为：</p>
+f(x;\mu,\sigma^2)=\frac{1}{\sqrt{2\pi}\sigma}exp[-\frac{1}{2\sigma^2}(x-\mu)^2]</script><p>似然函数为：</p>
 <script type="math/tex; mode=display">
-   \begin{align*}
-   L(\mu,\sigma^2)&=\prod_{i=1}^n \frac{1}{\sqrt{2\pi}\sigma}exp[-\frac{1}{2\sigma^2}(x_i-\mu)^2]\\
-   &=(\frac{1}{\sqrt{2\pi}\sigma})^n exp[-\frac{1}{2\sigma^2}\sum_{i=1}^n (x_i-\mu)^2]\\
-   &=(\frac{1}{2\pi \sigma^2})^{\frac{n}{2}} exp[-\frac{1}{2\sigma^2}\sum_{i=1}^n (x_i-\mu)^2]\\
-   &=(2\pi)^{-\frac{n}{2}}(\sigma^2)^{-\frac{n}{2}}exp[-\frac{1}{2\sigma^2}\sum_{i=1}^n (x_i-\mu)^2]
-   \end{align*}</script><p>   它的对数：</p>
+\begin{align*}
+L(\mu,\sigma^2)&=\prod_{i=1}^n \frac{1}{\sqrt{2\pi}\sigma}exp[-\frac{1}{2\sigma^2}(x_i-\mu)^2]\\
+&=(\frac{1}{\sqrt{2\pi}\sigma})^n exp[-\frac{1}{2\sigma^2}\sum_{i=1}^n (x_i-\mu)^2]\\
+&=(\frac{1}{2\pi \sigma^2})^{\frac{n}{2}} exp[-\frac{1}{2\sigma^2}\sum_{i=1}^n (x_i-\mu)^2]\\
+&=(2\pi)^{-\frac{n}{2}}(\sigma^2)^{-\frac{n}{2}}exp[-\frac{1}{2\sigma^2}\sum_{i=1}^n (x_i-\mu)^2]
+\end{align*}</script><p>它的对数：</p>
 <script type="math/tex; mode=display">
-   ln L(\mu,\sigma^2)=-\frac{n}{2}ln(2\pi)-\frac{n}{2}ln(\sigma^2)-\frac{1}{2\sigma^2}\sum_{i=1}^n (x_i-\mu)^2</script><p>   令</p>
-<script type="math/tex; mode=display">
-   \left\{
-       \begin{array}{l}
-           \frac{\partial ln L(\mu,\sigma^2)}{\partial \mu}=\frac{1}{\sigma^2}\Sigma_{i=1}^n(x_i-\mu)=0\\
-
-           \frac{\partial ln L(\mu,\sigma^2)}{\partial \sigma^2}= -\frac{n}{2\sigma^2} + \frac{1}{2 \sigma^4}\sum_{i=1}^n (x_i-\mu)^2=0
-       \end{array}
-   \right.</script><p>   联合求解，得到参数$\mu$和$\sigma^2$的最大似然估计值分别为：</p>
+ln L(\mu,\sigma^2)=-\frac{n}{2}ln(2\pi)-\frac{n}{2}ln(\sigma^2)-\frac{1}{2\sigma^2}\sum_{i=1}^n (x_i-\mu)^2</script><p>令</p>
 <script type="math/tex; mode=display">
 \left\{
-       \begin{array}{l}
-           \hat \mu = \overline x = \frac{1}{n} \sum_{i=1}^n x_i\\
+    \begin{array}{l}
+        \frac{\partial ln L(\mu,\sigma^2)}{\partial \mu}=\frac{1}{\sigma^2}\Sigma_{i=1}^n(x_i-\mu)=0\\
 
-           \hat \sigma^2 = \frac{1}{n} \sum_{i=1}^n (x_i-\overline x)^2
-       \end{array}
-   \right.</script><p>   相应的最大似然估计量分别为：     $\hat \mu=\bar X$,       $\hat \sigma^2=\frac{1}{n}\sum_{i=1}^n (X_i- \overline X)$   </p>
+        \frac{\partial ln L(\mu,\sigma^2)}{\partial \sigma^2}= -\frac{n}{2\sigma^2} + \frac{1}{2 \sigma^4}\sum_{i=1}^n (x_i-\mu)^2=0
+    \end{array}
+\right.</script><p>联合求解，得到参数$\mu$和$\sigma^2$的最大似然估计值分别为：</p>
+<script type="math/tex; mode=display">
+\left\{
+    \begin{array}{l}
+        \hat \mu = \overline x = \frac{1}{n} \sum_{i=1}^n x_i\\
+
+        \hat \sigma^2 = \frac{1}{n} \sum_{i=1}^n (x_i-\overline x)^2
+    \end{array}
+\right.</script><p>相应的最大似然估计量分别为： </p>
+<p> $\hat \mu=\bar X$,  $\hat \sigma^2=\frac{1}{n}\sum_{i=1}^n (X_i- \overline X)$</p>
+</li>
+</ol>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>求最大似然估计值的一般步骤：</p>
 <p>（1）写出总体$X$的分布律$p(x; \theta)$（$X$为离散型随机变量）或者概率密度$f(x; \theta)$（$X$为连续型随机变量）</p>
 <p>（2）写出样本的似然函数$L(\theta)$ </p>
-<p>离散型：</p>
-<script type="math/tex; mode=display">
-L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}p(x_i;\theta)</script><p>连续型：</p>
-<script type="math/tex; mode=display">
-L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}f(x_i;\theta)</script><p>（3）对似然函数取对数     $ln L(\theta)$</p>
+<p>离散型：$$L(\theta)=L(x<em>1,x_2,\cdots,x_n;\theta)=\prod</em>{i=1}^{n}p(x_i;\theta)$</p>
+<p>连续型：$L(\theta)=L(x<em>1,x_2,\cdots,x_n;\theta)=\prod</em>{i=1}^{n}f(x_i;\theta)$</p>
+<p>（3）对似然函数取对数     $ln L(\theta)$</p>
 <p>（4）求偏导     $\frac{\partial ln L(\theta)}{\partial \theta}$</p>
 <p>（5）解方程（组） $\frac{\partial ln L(\theta)}{\partial \theta}=0$，得到参数$\theta$的最大似然估计值$\hat \theta$</p>
 <p>注：参数可能是一个（如例1，只有一个参数$\theta$），也可能是一组（如例2，有两个参数：$\mu, \sigma^2$），一组参数时，求解方法类似。</p>
@@ -271,7 +276,7 @@ L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}f(x_i;\theta)</script><p>�
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-06-02T12:35:47.672Z" itemprop="dateUpdated">2019-06-02 20:35:47</time>
+    最后更新时间：<time datetime="2019-06-02T13:22:13.113Z" itemprop="dateUpdated">2019-06-02 21:22:13</time>
 </span><br>
 
 
@@ -305,7 +310,7 @@ L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}f(x_i;\theta)</script><p>�
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://wgs666.github.io/2019/06/02/MLE/&title=《最大似然估计》 — 路漫漫其修远兮，吾将上下而求索&pic=https://wgs666.github.io/img/wgs.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://wgs666.github.io/2019/06/02/MLE/&title=《极大似然估计》 — 路漫漫其修远兮，吾将上下而求索&pic=https://wgs666.github.io/img/wgs.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -315,7 +320,7 @@ L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}f(x_i;\theta)</script><p>�
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wgs666.github.io/2019/06/02/MLE/&title=《最大似然估计》 — 路漫漫其修远兮，吾将上下而求索&source=学习笔记" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wgs666.github.io/2019/06/02/MLE/&title=《极大似然估计》 — 路漫漫其修远兮，吾将上下而求索&source=学习笔记" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -325,7 +330,7 @@ L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}f(x_i;\theta)</script><p>�
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《最大似然估计》 — 路漫漫其修远兮，吾将上下而求索&url=https://wgs666.github.io/2019/06/02/MLE/&via=https://wgs666.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《极大似然估计》 — 路漫漫其修远兮，吾将上下而求索&url=https://wgs666.github.io/2019/06/02/MLE/&via=https://wgs666.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
@@ -449,8 +454,6 @@ L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}f(x_i;\theta)</script><p>�
             <span>
                 Guangsheng Wu <br>吴光生 &copy;
                     
-                        2018 -
-                            
                                 2019
             </span>
             <span>
@@ -474,7 +477,7 @@ L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}f(x_i;\theta)</script><p>�
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://wgs666.github.io/2019/06/02/MLE/&title=《最大似然估计》 — 路漫漫其修远兮，吾将上下而求索&pic=https://wgs666.github.io/img/wgs.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://wgs666.github.io/2019/06/02/MLE/&title=《极大似然估计》 — 路漫漫其修远兮，吾将上下而求索&pic=https://wgs666.github.io/img/wgs.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -484,7 +487,7 @@ L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}f(x_i;\theta)</script><p>�
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wgs666.github.io/2019/06/02/MLE/&title=《最大似然估计》 — 路漫漫其修远兮，吾将上下而求索&source=学习笔记" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wgs666.github.io/2019/06/02/MLE/&title=《极大似然估计》 — 路漫漫其修远兮，吾将上下而求索&source=学习笔记" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -494,7 +497,7 @@ L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}f(x_i;\theta)</script><p>�
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《最大似然估计》 — 路漫漫其修远兮，吾将上下而求索&url=https://wgs666.github.io/2019/06/02/MLE/&via=https://wgs666.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《极大似然估计》 — 路漫漫其修远兮，吾将上下而求索&url=https://wgs666.github.io/2019/06/02/MLE/&via=https://wgs666.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
