@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="路漫漫其修远兮，吾将上下而求索">
 <meta property="og:description" content="什么是最大似然估计？最大似然估计（Maximum Likelihood Estimation）是一种参数估计的方法。其核心思想是：找到参数$\theta$的一个估计值，使得当前样本出现的可能性最大。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-02T14:28:41.962Z">
+<meta property="og:updated_time" content="2019-06-02T14:39:56.225Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="最大似然估计(MLE)">
 <meta name="twitter:description" content="什么是最大似然估计？最大似然估计（Maximum Likelihood Estimation）是一种参数估计的方法。其核心思想是：找到参数$\theta$的一个估计值，使得当前样本出现的可能性最大。">
@@ -252,14 +252,15 @@ L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}p(x_i;\theta),\theta\in\Th
 
            \hat \sigma^2 = \frac{1}{n} \sum_{i=1}^n (x_i-\overline x)^2
        \end{array}
-   \right.</script><p>   相应的最大似然估计量分别为： </p>
-<pre><code>$\hat \mu=\bar X$,  $\hat \sigma^2=\frac{1}{n}\sum_{i=1}^n (X_i- \overline X)$
-</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>求最大似然估计值的一般步骤：</p>
+   \right.</script><p>   相应的最大似然估计量分别为：    $\hat \mu=\bar X$,       $\hat \sigma^2=\frac{1}{n}\sum_{i=1}^n (X_i- \overline X)$</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>求最大似然估计值的一般步骤：</p>
 <p>（1）写出总体$X$的分布律$p(x; \theta)$（$X$为离散型随机变量）或者概率密度$f(x; \theta)$（$X$为连续型随机变量）</p>
 <p>（2）写出样本的似然函数$L(\theta)$ </p>
-<p>离散型：$$L(\theta)=L(x<em>1,x_2,\cdots,x_n;\theta)=\prod</em>{i=1}^{n}p(x_i;\theta)$</p>
-<p>连续型：$L(\theta)=L(x<em>1,x_2,\cdots,x_n;\theta)=\prod</em>{i=1}^{n}f(x_i;\theta)$</p>
-<p>（3）对似然函数取对数     $ln L(\theta)$</p>
+<p>离散型：</p>
+<script type="math/tex; mode=display">
+L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}p(x_i;\theta)</script><p>连续型：</p>
+<script type="math/tex; mode=display">
+L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}f(x_i;\theta)</script><p>（3）对似然函数取对数     $ln L(\theta)$</p>
 <p>（4）求偏导     $\frac{\partial ln L(\theta)}{\partial \theta}$</p>
 <p>（5）解方程（组） $\frac{\partial ln L(\theta)}{\partial \theta}=0$，得到参数$\theta$的最大似然估计值$\hat \theta$</p>
 <p>注：参数可能是一个（如例1，只有一个参数$\theta$），也可能是一组（如例2，有两个参数：$\mu, \sigma^2$），一组参数时，求解方法类似。</p>
@@ -271,7 +272,7 @@ L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}p(x_i;\theta),\theta\in\Th
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-06-02T14:28:41.962Z" itemprop="dateUpdated">2019-06-02 22:28:41</time>
+    最后更新时间：<time datetime="2019-06-02T14:39:56.225Z" itemprop="dateUpdated">2019-06-02 22:39:56</time>
 </span><br>
 
 
