@@ -20,15 +20,16 @@
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content>
+    <meta name="keywords" content="概率统计,机器学习">
     <meta name="description" content="什么是最大似然估计？最大似然估计（Maximum Likelihood Estimation）是一种参数估计的方法。其核心思想是：找到参数$\theta$的一个估计值，使得当前样本出现的可能性最大。">
+<meta name="keywords" content="概率统计,机器学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="最大似然估计(MLE)">
 <meta property="og:url" content="https://wgs666.github.io/2019/06/02/MLE/index.html">
 <meta property="og:site_name" content="路漫漫其修远兮，吾将上下而求索">
 <meta property="og:description" content="什么是最大似然估计？最大似然估计（Maximum Likelihood Estimation）是一种参数估计的方法。其核心思想是：找到参数$\theta$的一个估计值，使得当前样本出现的可能性最大。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-02T15:24:39.409Z">
+<meta property="og:updated_time" content="2019-06-03T05:52:05.788Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="最大似然估计(MLE)">
 <meta name="twitter:description" content="什么是最大似然估计？最大似然估计（Maximum Likelihood Estimation）是一种参数估计的方法。其核心思想是：找到参数$\theta$的一个估计值，使得当前样本出现的可能性最大。">
@@ -150,6 +151,8 @@
 </time>
 
 
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="../../../../categories/学习笔记/">学习笔记</a></li></ul>
+
             
         </h5>
     </div>
@@ -178,6 +181,8 @@
             <time class="post-time" title="2019-06-02 18:23:12" datetime="2019-06-02T10:23:12.000Z" itemprop="datePublished">2019-06-02</time>
 
             
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="../../../../categories/学习笔记/">学习笔记</a></li></ul>
+
 
 
             
@@ -272,7 +277,7 @@ L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}f(x_i;\theta)</script><p>�
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-06-02T15:24:39.409Z" itemprop="dateUpdated">2019-06-02 23:24:39</time>
+    最后更新时间：<time datetime="2019-06-03T05:52:05.788Z" itemprop="dateUpdated">2019-06-03 13:52:05</time>
 </span><br>
 
 
@@ -298,6 +303,8 @@ L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}f(x_i;\theta)</script><p>�
 
         <div class="post-footer">
             
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/概率统计-机器学习/">概率统计,机器学习</a></li></ul>
+
 
             
 <div class="page-share-wrap">
@@ -392,6 +399,29 @@ L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}f(x_i;\theta)</script><p>�
 
 
 
+
+    <section class="comments" id="comments">
+        <div id="gitalk-container"></div>
+        <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+        <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+        <script>
+            var id = location.pathname
+            if (location.pathname.length > 50) {
+              id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+            }
+            const gitalk = new Gitalk({
+              clientID: '',
+              clientSecret: '',
+              repo: '',
+              owner: '',
+              admin: [''],
+              id: id,      // Ensure uniqueness and length less than 50
+              title: document.title.split('|')[0],
+              distractionFreeMode: false  // Facebook-like distraction free mode
+            })
+            gitalk.render('gitalk-container')
+        </script>
+    </section>
 
 
 

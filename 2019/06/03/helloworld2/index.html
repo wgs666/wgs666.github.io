@@ -21,17 +21,17 @@
     
     
     <meta name="keywords" content>
-    <meta name="description" content="学习笔记">
+    <meta name="description" content="仅用于测试一下博客功能">
 <meta property="og:type" content="article">
 <meta property="og:title" content="helloworld2">
 <meta property="og:url" content="https://wgs666.github.io/2019/06/03/helloworld2/index.html">
 <meta property="og:site_name" content="路漫漫其修远兮，吾将上下而求索">
-<meta property="og:description" content="学习笔记">
+<meta property="og:description" content="仅用于测试一下博客功能">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-03T03:16:17.195Z">
+<meta property="og:updated_time" content="2019-06-03T05:54:32.541Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="helloworld2">
-<meta name="twitter:description" content="学习笔记">
+<meta name="twitter:description" content="仅用于测试一下博客功能">
     
         <link rel="alternate" type="application/atom+xml" title="路漫漫其修远兮，吾将上下而求索" href="../../../../atom.xml">
     
@@ -182,7 +182,8 @@
             
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            
+            <p>仅用于测试一下博客功能</p>
+
         </div>
 
         <blockquote class="post-copyright">
@@ -190,7 +191,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-06-03T03:16:17.195Z" itemprop="dateUpdated">2019-06-03 11:16:17</time>
+    最后更新时间：<time datetime="2019-06-03T05:54:32.541Z" itemprop="dateUpdated">2019-06-03 13:54:32</time>
 </span><br>
 
 
@@ -310,6 +311,29 @@
 
 
 
+
+    <section class="comments" id="comments">
+        <div id="gitalk-container"></div>
+        <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+        <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+        <script>
+            var id = location.pathname
+            if (location.pathname.length > 50) {
+              id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+            }
+            const gitalk = new Gitalk({
+              clientID: '',
+              clientSecret: '',
+              repo: '',
+              owner: '',
+              admin: [''],
+              id: id,      // Ensure uniqueness and length less than 50
+              title: document.title.split('|')[0],
+              distractionFreeMode: false  // Facebook-like distraction free mode
+            })
+            gitalk.render('gitalk-container')
+        </script>
+    </section>
 
 
 

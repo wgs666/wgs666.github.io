@@ -20,16 +20,20 @@
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content>
-    <meta property="og:type" content="article">
+    <meta name="keywords" content="机器学习">
+    <meta name="description" content="仅用于测试一下博客功能">
+<meta name="keywords" content="机器学习">
+<meta property="og:type" content="article">
 <meta property="og:title" content="PCA">
 <meta property="og:url" content="https://wgs666.github.io/2019/06/02/PCA/index.html">
 <meta property="og:site_name" content="路漫漫其修远兮，吾将上下而求索">
+<meta property="og:description" content="仅用于测试一下博客功能">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://wgs666.github.io/assets/13395269_103525238102_2.jpg">
-<meta property="og:updated_time" content="2019-06-03T03:18:02.730Z">
+<meta property="og:updated_time" content="2019-06-03T05:54:46.384Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PCA">
+<meta name="twitter:description" content="仅用于测试一下博客功能">
 <meta name="twitter:image" content="https://wgs666.github.io/assets/13395269_103525238102_2.jpg">
     
         <link rel="alternate" type="application/atom+xml" title="路漫漫其修远兮，吾将上下而求索" href="../../../../atom.xml">
@@ -149,6 +153,8 @@
 </time>
 
 
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="../../../../categories/学习笔记/">学习笔记</a></li></ul>
+
             
         </h5>
     </div>
@@ -170,6 +176,8 @@
             <time class="post-time" title="2019-06-02 23:36:16" datetime="2019-06-02T15:36:16.000Z" itemprop="datePublished">2019-06-02</time>
 
             
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="../../../../categories/学习笔记/">学习笔记</a></li></ul>
+
 
 
             
@@ -182,6 +190,7 @@
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             <p><img src="/assets/13395269_103525238102_2.jpg" alt="img"></p>
+<p>仅用于测试一下博客功能</p>
 
         </div>
 
@@ -190,7 +199,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-06-03T03:18:02.730Z" itemprop="dateUpdated">2019-06-03 11:18:02</time>
+    最后更新时间：<time datetime="2019-06-03T05:54:46.384Z" itemprop="dateUpdated">2019-06-03 13:54:46</time>
 </span><br>
 
 
@@ -216,6 +225,8 @@
 
         <div class="post-footer">
             
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/机器学习/">机器学习</a></li></ul>
+
 
             
 <div class="page-share-wrap">
@@ -310,6 +321,29 @@
 
 
 
+
+    <section class="comments" id="comments">
+        <div id="gitalk-container"></div>
+        <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+        <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+        <script>
+            var id = location.pathname
+            if (location.pathname.length > 50) {
+              id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+            }
+            const gitalk = new Gitalk({
+              clientID: '',
+              clientSecret: '',
+              repo: '',
+              owner: '',
+              admin: [''],
+              id: id,      // Ensure uniqueness and length less than 50
+              title: document.title.split('|')[0],
+              distractionFreeMode: false  // Facebook-like distraction free mode
+            })
+            gitalk.render('gitalk-container')
+        </script>
+    </section>
 
 
 
