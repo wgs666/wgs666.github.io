@@ -2,9 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://wgs666.github.io/categories/index.html</loc>
+    
+    <lastmod>2019-06-03T03:35:31.483Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wgs666.github.io/2019/06/03/first-blog/</loc>
+    
+    <lastmod>2019-06-03T03:34:02.706Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://wgs666.github.io/2019/06/02/PCA/</loc>
     
-    <lastmod>2019-06-02T15:41:00.555Z</lastmod>
+    <lastmod>2019-06-03T03:18:02.730Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wgs666.github.io/2019/06/03/hello123/</loc>
+    
+    <lastmod>2019-06-03T03:16:40.928Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wgs666.github.io/2019/06/03/helloworld2/</loc>
+    
+    <lastmod>2019-06-03T03:16:17.195Z</lastmod>
     
   </url>
   
@@ -33,13 +61,6 @@
     <loc>https://wgs666.github.io/about/index.html</loc>
     
     <lastmod>2019-06-02T10:34:45.651Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wgs666.github.io/categories/index.html</loc>
-    
-    <lastmod>2019-06-02T10:34:13.850Z</lastmod>
     
   </url>
   
