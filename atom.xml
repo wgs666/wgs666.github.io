@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wgs666.github.io/"/>
-  <updated>2019-06-03T05:54:01.201Z</updated>
+  <updated>2019-06-04T16:01:38.304Z</updated>
   <id>https://wgs666.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>主成分分析（PCA）</title>
+    <link href="https://wgs666.github.io/2019/06/04/pca/"/>
+    <id>https://wgs666.github.io/2019/06/04/pca/</id>
+    <published>2019-06-04T15:10:06.000Z</published>
+    <updated>2019-06-04T16:01:38.304Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1-主成分分析"><a href="#1-主成分分析" class="headerlink" title="1. 主成分分析"></a>1. 主成分分析</h2><p>优点：降低数据的复杂性，识别最重要的多个特征。</p><p>缺点：不一定需要，且可能损失有用信息。</p><p>使用数据类型：数值型数据</p> <a id="more"></a><h2 id="2-在NumPy中实现PCA"><a href="#2-在NumPy中实现PCA" class="headerlink" title="2. 在NumPy中实现PCA"></a>2. 在NumPy中实现PCA</h2><p>将数据转换成前K个主成分的伪码：</p><p>去除平均值（让样本矩阵中心化，即每一个维度减去该维度的均值，使每一维度上的均值为0）</p><p>计算协方差矩阵</p><p>计算协方差矩阵的特征值和特征向量</p><p>将特征值从大到小排序</p><p>保留最上面的K个特征向量</p><p>将数据转换到上述K个特征向量构建的新空间中</p><p>补充阅读：协方差矩阵</p><p>（1）一个维度上方差的定义：</p><script type="math/tex; mode=display">var(X)=\frac{\sum_{i=1}^{n}(X_{i}-{\bar{X}})(X_{i}-{\bar{X}})}{n-1}</script><p>（2）协方差的定义：</p><script type="math/tex; mode=display">cov(X,Y)=\frac{\sum_{i=1}^{n}(X_{i}-{\bar{X}})(Y_{i}-{\bar{Y}})}{n-1}</script><p>方差是协方差的一个特例，X与其自身的协方差就是X的方差。</p><p>分母为n-1是因为随机变量的数学期望未知，以样本均值代替，自由度减一。</p><p>协方差就是定义了两个维度之间的相关性，即这个样本的两个维度之间有没有关系。</p><p>协方差为0，证明这两个维度之间没有关系；协方差为正，两个维度正相关；协方差为负，两个维度负相关。</p><p>（3）协方差矩阵：</p><p>对n个维度，任意两个维度都计算一个协方差，组成矩阵。</p><script type="math/tex; mode=display">C_{n \times n}=( c_{i,j}, c_{i,j}=cov(Dim_{i},Dim_{j}))</script><p>直观地，对于一个含有x，y，z三个维度的样本，协方差矩阵如下：</p><script type="math/tex; mode=display">C=\begin{pmatrix}cov(x,x) & cov(x,y) & cov(x,z)\\ cov(y,x) & cov(y,y) & cov(y,z)\\ cov(z,x) & cov(z,y) & cov(z,z)\end{pmatrix}</script><p>可以看出，对角线表示了样本在各个维度上的方差，其他元素表示不同维度两两之间的相关性。</p><p>例：</p><p>假设原始数据为5个样本，每个样本有2个特征x和y。矩阵是：</p><script type="math/tex; mode=display">Data =\begin{bmatrix}1 & -1\\ 1 & 1\\ 2 & 1\\ 2 & 2\\ 4 & 2\end{bmatrix}</script><p>第一步，样本矩阵中心化（计算每个维度的均值，所有样本都减去均值）</p><p>维度x的均值为2，维度y的均值为1。</p><p>各维度去均值后，矩阵是：</p><script type="math/tex; mode=display">DataAdjust = \begin{bmatrix}-1 & -2\\ -1 & 0\\ 0 & 0\\ 0 & 1\\ 2 & 1\end{bmatrix}</script><p>这时，两个维度上的均值都为0。</p><p>第二步，计算协方差矩阵</p><p>协方差矩阵：</p><script type="math/tex; mode=display">\begin{align*}C &=\begin{bmatrix}cov(x,x) & cov(x,y)\\ cov(y,x) & cov(y,y)\end{bmatrix}\\&=\begin{bmatrix}\frac{(-1) \times (-1) + (-1) \times (-1) + 0 \times 0 + 0 \times 0 + 2 \times 2}{4} & \frac{(-1) \times (-2) + (-1) \times (0) + 0 \times 0 + 0 \times 1 + 2 \times 1}{4}\\ \frac{(-2) \times (-1) + (0) \times (-1) + 0 \times 0 + 1 \times 0 + 1 \times 2}{4}  & \frac{(-2) \times (-2) + (0) \times (0) + 0 \times 0 + 1 \times 1 + 1 \times 1}{4}\end{bmatrix}\\&=\begin{bmatrix}1.5 & 1.0\\ 1.0 & 1.5\end{bmatrix}\end{align*}</script><p>第三步，计算协方差矩阵的特征值和特征向量</p><script type="math/tex; mode=display">eigenValues=\begin{pmatrix}2.5 & 0.5\end{pmatrix}</script><script type="math/tex; mode=display">eigenVectors=\begin{pmatrix}0.70710678 & -0.70710678\\0.70710678 & 0.70710678\end{pmatrix}</script><p>特征值2.5对应的特征向量是eigenVectors的第1列：</p><script type="math/tex; mode=display">\begin{pmatrix}0.70710678\\0.70710678\end{pmatrix}</script><p>特征值0.5对应的特征向量是eigenVectors的第2列：</p><script type="math/tex; mode=display">\begin{pmatrix}-0.70710678\\0.70710678\end{pmatrix}</script><p>第四步，将特征值按照从大到小的顺序排列，选择其中最大的k个，然后将其对应的k个特征向量分别作为列向量组成特征向量矩阵</p><p>这里特征值只有2个，我们选取最大的那个2.5，对应的特征向量是：</p><script type="math/tex; mode=display">\begin{pmatrix}0.70710678\\0.70710678\end{pmatrix}</script><p>第五步，将样本点投影到选取的特征向量上。</p><p>假设样本数为m，特征数为n，减去均值后的样本矩阵为DataAdjust(m×n)，协方差矩阵为C(n×n)，选取的k个特征向量组成的矩阵为TopEigenVectors(n×k)，那么投影后的低维数据LowDimData为：</p><script type="math/tex; mode=display">LowDimData_{m\times k}=DataAdjust_{m \times n} \times TopEigenVectors_{n \times k}</script><p>这里是</p><script type="math/tex; mode=display">LowDimData=\begin{bmatrix}-1 & -2\\ -1 & 0\\ 0 & 0\\ 0 & 1\\ 2 & 1\end{bmatrix} \times \begin{pmatrix}0.70710678\\0.70710678\end{pmatrix}=\begin{bmatrix}-2.12132034\\ -0.70710678\\ 0\\ 0.70710678\\ 2.12132034\end{bmatrix}</script><p>这样就将原始样本的n维（这个例子n=2）特征变成了k维（这个例子k=1），这k维就是原始特征在k维上的投影。</p><p>第六步，查看重构之后的数据，用于调试（假设K取值为n，重构回去的数据reconMat应该与原始数据Data重合）</p><script type="math/tex; mode=display">reconMat = (LowDimData * TopEigenVectors.T) + meanVals</script><p>程序清单 PCA算法</p><pre><code class="lang-python">from numpy import *import matplotlibimport matplotlib.pyplot as pltdef loadDataSet(fileName, delim=&#39;\t&#39;):    fr = open(fileName)    stringArr = [line.strip().split(delim) for line in fr.readlines()]    datArr = [list(map(float,line)) for line in stringArr]    # python3 needs list()    return mat(datArr)def pca(dataMat, topNfeat=9999999):    meanVals = mean(dataMat, axis=0)    dataAdjust = dataMat - meanVals #remove mean    covMat = cov(dataAdjust, rowvar=0)    eigVals,eigVects = linalg.eig(mat(covMat))    eigValInd = argsort(eigVals)            #sort, sort goes smallest to largest    eigValInd = eigValInd[:-(topNfeat+1):-1]  #cut off unwanted dimensions    topEigVects = eigVects[:,eigValInd]       #reorganize eig vects largest to smallest    lowDimDataMat = dataAdjust * topEigVects#transform data into new dimensions    reconMat = (lowDimDataMat * topEigVects.T) + meanVals    return lowDimDataMat, reconMatdataMat = loadDataSet(&#39;testSet.txt&#39;)lowDimDataMat, reconMat = pca(dataMat, 1)fig = plt.figure()ax = fig.add_subplot(111)ax.scatter(dataMat[:,0].flatten().A[0],  dataMat[:,1].flatten().A[0], marker=&#39;^&#39;, s=90)ax.scatter(reconMat[:,0].flatten().A[0], reconMat[:,1].flatten().A[0], marker=&#39;o&#39;, s=50, c=&#39;red&#39;)plt.show()</code></pre><p>运行结果如图1：<br><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="/assets/pca/Figure_1.png" alt title>                </div>                <div class="image-caption"></div>            </figure></p><p><center> <font size="2" color="gray">图1 原始数据集(三角形)及第一主成分(圆形)</font>  </center><br>用到的数据集<a href="/assets/pca/testSet.txt">testSet.txt</a></p><p><strong>参考文献：</strong></p><p>[1]  (美) Harrington Peter著.  机器学习实战[M]. 李锐, 李鹏, 曲亚东, 王斌, 译.  北京: 人民邮电出版社, 2013.</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;1-主成分分析&quot;&gt;&lt;a href=&quot;#1-主成分分析&quot; class=&quot;headerlink&quot; title=&quot;1. 主成分分析&quot;&gt;&lt;/a&gt;1. 主成分分析&lt;/h2&gt;&lt;p&gt;优点：降低数据的复杂性，识别最重要的多个特征。&lt;/p&gt;
+&lt;p&gt;缺点：不一定需要，且可能损失有用信息。&lt;/p&gt;
+&lt;p&gt;使用数据类型：数值型数据&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="学习笔记" scheme="https://wgs666.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="机器学习" scheme="https://wgs666.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
   
   <entry>
     <title>first-blog</title>
@@ -41,30 +65,6 @@
     
     
       <category term="深度学习" scheme="https://wgs666.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>最大似然估计(MLE)</title>
-    <link href="https://wgs666.github.io/2019/06/02/mle/"/>
-    <id>https://wgs666.github.io/2019/06/02/mle/</id>
-    <published>2019-06-02T10:23:12.000Z</published>
-    <updated>2019-06-04T15:45:20.366Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="什么是最大似然估计？"><a href="#什么是最大似然估计？" class="headerlink" title="什么是最大似然估计？"></a>什么是最大似然估计？</h2><p>最大似然估计（Maximum Likelihood Estimation）是一种参数估计的方法。其核心思想是：找到参数$\theta$的一个估计值，使得当前样本出现的可能性最大。</p> <a id="more"></a><p>设总体$X$属于离散型，其分布律$P\{ X=x\}=p(x;\theta), \theta \in \Theta$的形式为已知，$\theta$为待估参数，$\Theta$是$\theta$可能取值的范围。设$X_1,X_2,\cdots,X_n$是来自$X$的样本，则$X_1,X_2,\cdots,X_n$的联合分布律为：</p><script type="math/tex; mode=display">\prod_{i=1}^{n}p(x_i;\theta)</script><p>样本$X_1,X_2,\cdots,X_n$取到观察值$x_1,x_2,\cdots,x_n$的概率，即事件$\{X_1=x_1,X_2=x_2,\cdots,X_n=x_n\}$发生的概率为：</p><script type="math/tex; mode=display">L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}p(x_i;\theta),\theta\in\Theta</script><p>这一概率随$\theta$的取值而变化，它是$\theta$的函数，$L(\theta)$称为样本的<strong>似然函数</strong>。</p><p>最大似然估计法，就是固定样本观察值$x_1,x_2,\cdots,x_n$，在参数$\theta$取值的可能范围$\Theta$内挑选出一个$\hat\theta$，使得似然函数$L(x_1,x_2,\cdots,x_n;\theta)$达到最大。即：</p><script type="math/tex; mode=display">\hat\theta=\mathop{\arg\max}_{\theta\in\Theta}L(x_1,x_2,\cdots,x_n;\theta)</script><p>这样得到的$\hat\theta$与样本值$x_1,x_2,\cdots,x_n$有关，常记为$\hat\theta(x_1,x_2,\cdots,x_n)$，称为参数$\theta$的<strong>最大似然估计值</strong>，而相应的统计量$\hat\theta(X_1,X_2,\cdots,X_n)$称为参数$\theta$的<strong>最大似然估计量</strong>。</p><h2 id="为什么要有参数估计？"><a href="#为什么要有参数估计？" class="headerlink" title="为什么要有参数估计？"></a>为什么要有参数估计？</h2><p>当模型已定，参数未知时。</p><p>例如，假设我们知道全国人民的身高服从正态分布，但不知道均值和方差。这时可以通过采样，观察其结果，然后再用样本数据的结果推出正态分布的均值与方差的最大概率值，这样就可以知道全国人民的身高分布的函数。</p><h2 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h2><p><span>1. </span> 抛硬币。现有一个正反面不是很均匀的硬币，如果正面朝上记为H，反面朝上记为T，抛10次的结果如下：</p><p>   T, H, T, T, H, T, T, T, H, T</p><p>   求这个硬币正面朝上的概率有多大？</p><p>   很显然，这个概率是0.3。现在用MLE的思想来求解它。</p><p>   设$x_1,x_2,\cdots,x_n$是相应于样本$X_1,X_2,\cdots,X_n$的一个样本值。</p><p>   不妨用$x_i=1$表示正面朝上，$x_i=0$表示反面朝上</p><p>   设正面朝上的概率为$\theta$，抛硬币服从二项分布$X \sim b(1,\theta)$，$X$的分布律为：</p><script type="math/tex; mode=display">   P\{X=x\}=p(x;\theta)=\theta^x (1-\theta)^{1-x},    x=0,1</script><p>   似然函数为：</p><script type="math/tex; mode=display">   L(\theta)=\prod_{i=1}^{n}p(x_i;\theta)=\prod_{i=1}^{n}\theta^{x_i}(1-\theta)^{1-x_i}</script><p>   取对数后，为</p><script type="math/tex; mode=display">\begin{align*}   ln L(\theta)&=ln\prod_{i=1}^{n}\theta^{x_i}(1-\theta)^{1-x_i}\\   &=\sum_{i=1}^{n}ln[\theta^{x_i}(1-\theta)^{1-x_i}]\\   &=\sum_{i=1}^{n}[ln\theta^{x_i}+ln(1-\theta)^{1-x_i}]\\   &=\sum_{i=1}^{n}[x_iln\theta+(1-x_i)ln(1-\theta)]\\   &=\sum_{i=1}^{n}x_iln\theta+(n-\sum_{i=1}^{n}x_i)ln(1-\theta)   \end{align*}</script><p>   求导：</p><script type="math/tex; mode=display">   \frac{\partial ln L(\theta)}{\partial \theta}=\frac{\sum_{i=1}^{n} x_i}{\theta}-\frac{n-\sum_{i=1}^{n} x_i}{1-\theta}</script><p>   令$\frac{\partial ln L(\theta)}{\partial \theta}=0$，可得：</p><script type="math/tex; mode=display">\hat \theta = \frac{\sum_{i=1}^{n} x_i}{n}</script><p>   可知概率$\hat \theta=0.3$</p><p><span>2. </span> 设$X \sim N(\mu, \sigma^2)$, $\mu, \sigma^2$为未知参数，$x_1,x_2,\cdots,x_n$是来自$X$的一个样本值。求$\mu, \sigma^2$的最大似然估计量。</p><p>   解：$X$的概率密度为：</p><script type="math/tex; mode=display">   f(x;\mu,\sigma^2)=\frac{1}{\sqrt{2\pi}\sigma}exp[-\frac{1}{2\sigma^2}(x-\mu)^2]</script><p>   似然函数为：</p><script type="math/tex; mode=display">   \begin{align*}   L(\mu,\sigma^2)&=\prod_{i=1}^n \frac{1}{\sqrt{2\pi}\sigma}exp[-\frac{1}{2\sigma^2}(x_i-\mu)^2]\\   &=(\frac{1}{\sqrt{2\pi}\sigma})^n exp[-\frac{1}{2\sigma^2}\sum_{i=1}^n (x_i-\mu)^2]\\   &=(\frac{1}{2\pi \sigma^2})^{\frac{n}{2}} exp[-\frac{1}{2\sigma^2}\sum_{i=1}^n (x_i-\mu)^2]\\   &=(2\pi)^{-\frac{n}{2}}(\sigma^2)^{-\frac{n}{2}}exp[-\frac{1}{2\sigma^2}\sum_{i=1}^n (x_i-\mu)^2]   \end{align*}</script><p>   它的对数：</p><script type="math/tex; mode=display">   ln L(\mu,\sigma^2)=-\frac{n}{2}ln(2\pi)-\frac{n}{2}ln(\sigma^2)-\frac{1}{2\sigma^2}\sum_{i=1}^n (x_i-\mu)^2</script><p>   令</p><script type="math/tex; mode=display">   \left\{       \begin{array}{l}           \frac{\partial ln L(\mu,\sigma^2)}{\partial \mu}=\frac{1}{\sigma^2}\Sigma_{i=1}^n(x_i-\mu)=0\\           \frac{\partial ln L(\mu,\sigma^2)}{\partial \sigma^2}= -\frac{n}{2\sigma^2} + \frac{1}{2 \sigma^4}\sum_{i=1}^n (x_i-\mu)^2=0       \end{array}   \right.</script><p>   联合求解，得到参数$\mu$和$\sigma^2$的最大似然估计值分别为：</p><script type="math/tex; mode=display">   \left\{       \begin{array}{l}           \hat \mu = \overline x = \frac{1}{n} \sum_{i=1}^n x_i\\           \hat \sigma^2 = \frac{1}{n} \sum_{i=1}^n (x_i-\overline x)^2       \end{array}   \right.</script><p>   相应的最大似然估计量分别为：    $\hat \mu=\bar X$,       $\hat \sigma^2=\frac{1}{n}\sum_{i=1}^n (X_i- \overline X)$</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>求最大似然估计值的一般步骤：</p><p>（1）写出总体$X$的分布律$p(x; \theta)$（$X$为离散型随机变量）或者概率密度$f(x; \theta)$（$X$为连续型随机变量）</p><p>（2）写出样本的似然函数$L(\theta)$ </p><p>离散型：$L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}p(x_i;\theta)$<br>连续型：$L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}f(x_i;\theta)$</p><p>（3）对似然函数取对数     $ln L(\theta)$</p><p>（4）求偏导     $\frac{\partial ln L(\theta)}{\partial \theta}$</p><p>（5）解方程（组） $\frac{\partial ln L(\theta)}{\partial \theta}=0$，得到参数$\theta$的最大似然估计值$\hat \theta$</p><p>注：参数可能是一个（如例1，只有一个参数$\theta$），也可能是一组（如例2，有两个参数：$\mu, \sigma^2$），一组参数时，求解方法类似。</p><p><br></p><p><strong>参考文献：</strong></p><p>[1] 盛骤, 谢式千, 潘承毅.  概率论与数理统计（第四版）[M].  北京: 高等教育出版社, 2008.</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;什么是最大似然估计？&quot;&gt;&lt;a href=&quot;#什么是最大似然估计？&quot; class=&quot;headerlink&quot; title=&quot;什么是最大似然估计？&quot;&gt;&lt;/a&gt;什么是最大似然估计？&lt;/h2&gt;&lt;p&gt;最大似然估计（Maximum Likelihood Estimation）是一种参数估计的方法。其核心思想是：找到参数$\theta$的一个估计值，使得当前样本出现的可能性最大。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="学习笔记" scheme="https://wgs666.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="概率统计" scheme="https://wgs666.github.io/tags/%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1/"/>
-    
-      <category term="机器学习" scheme="https://wgs666.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
