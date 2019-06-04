@@ -14,25 +14,27 @@
     
     
     
-    <title>最大似然估计(MLE) | 路漫漫其修远兮，吾将上下而求索</title>
+    <title>主成分分析（PCA） | 路漫漫其修远兮，吾将上下而求索</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="机器学习,概率统计">
-    <meta name="description" content="什么是最大似然估计？最大似然估计（Maximum Likelihood Estimation）是一种参数估计的方法。其核心思想是：找到参数$\theta$的一个估计值，使得当前样本出现的可能性最大。">
-<meta name="keywords" content="机器学习,概率统计">
+    <meta name="keywords" content="机器学习">
+    <meta name="description" content="1. 主成分分析优点：降低数据的复杂性，识别最重要的多个特征。 缺点：不一定需要，且可能损失有用信息。 使用数据类型：数值型数据">
+<meta name="keywords" content="机器学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="最大似然估计(MLE)">
-<meta property="og:url" content="https://wgs666.github.io/2019/06/02/mle/index.html">
+<meta property="og:title" content="主成分分析（PCA）">
+<meta property="og:url" content="https://wgs666.github.io/2019/06/04/pca/index.html">
 <meta property="og:site_name" content="路漫漫其修远兮，吾将上下而求索">
-<meta property="og:description" content="什么是最大似然估计？最大似然估计（Maximum Likelihood Estimation）是一种参数估计的方法。其核心思想是：找到参数$\theta$的一个估计值，使得当前样本出现的可能性最大。">
+<meta property="og:description" content="1. 主成分分析优点：降低数据的复杂性，识别最重要的多个特征。 缺点：不一定需要，且可能损失有用信息。 使用数据类型：数值型数据">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-04T15:45:20.366Z">
+<meta property="og:image" content="https://wgs666.github.io/assets/pca/Figure_1.png">
+<meta property="og:updated_time" content="2019-06-04T16:01:38.304Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="最大似然估计(MLE)">
-<meta name="twitter:description" content="什么是最大似然估计？最大似然估计（Maximum Likelihood Estimation）是一种参数估计的方法。其核心思想是：找到参数$\theta$的一个估计值，使得当前样本出现的可能性最大。">
+<meta name="twitter:title" content="主成分分析（PCA）">
+<meta name="twitter:description" content="1. 主成分分析优点：降低数据的复杂性，识别最重要的多个特征。 缺点：不一定需要，且可能损失有用信息。 使用数据类型：数值型数据">
+<meta name="twitter:image" content="https://wgs666.github.io/assets/pca/Figure_1.png">
     
         <link rel="alternate" type="application/atom+xml" title="路漫漫其修远兮，吾将上下而求索" href="../../../../atom.xml">
     
@@ -121,7 +123,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">最大似然估计(MLE)</div>
+        <div class="flex-col header-title ellipsis">主成分分析（PCA）</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -143,11 +145,11 @@
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">最大似然估计(MLE)</h1>
+        <h1 class="title">主成分分析（PCA）</h1>
         <h5 class="subtitle">
             
-                <time datetime="2019-06-02T10:23:12.000Z" itemprop="datePublished" class="page-time">
-  2019-06-02
+                <time datetime="2019-06-04T15:10:06.000Z" itemprop="datePublished" class="page-time">
+  2019-06-04
 </time>
 
 
@@ -168,23 +170,23 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是最大似然估计？"><span class="post-toc-text">什么是最大似然估计？</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#为什么要有参数估计？"><span class="post-toc-text">为什么要有参数估计？</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#举例"><span class="post-toc-text">举例</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-text">总结</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-主成分分析"><span class="post-toc-text">1. 主成分分析</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-在NumPy中实现PCA"><span class="post-toc-text">2. 在NumPy中实现PCA</span></a></li></ol>
         </nav>
     </aside>
 
 
-<article id="post-mle" class="post-article article-type-post fade" itemprop="blogPost">
+<article id="post-pca" class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">最大似然估计(MLE)</h1>
+        <h1 class="post-card-title">主成分分析（PCA）</h1>
         <div class="post-meta">
             
-            <time class="post-time" title="2019-06-02 18:23:12" datetime="2019-06-02T10:23:12.000Z" itemprop="datePublished">
+            <time class="post-time" title="2019-06-04 23:10:06" datetime="2019-06-04T15:10:06.000Z" itemprop="datePublished">
 
 
-2019-06-02
+2019-06-04
 
- 18:23:12 
+ 23:10:06 
 
 </time>
 
@@ -208,81 +210,171 @@
             
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h2 id="什么是最大似然估计？"><a href="#什么是最大似然估计？" class="headerlink" title="什么是最大似然估计？"></a>什么是最大似然估计？</h2><p>最大似然估计（Maximum Likelihood Estimation）是一种参数估计的方法。其核心思想是：找到参数$\theta$的一个估计值，使得当前样本出现的可能性最大。</p>
+            <h2 id="1-主成分分析"><a href="#1-主成分分析" class="headerlink" title="1. 主成分分析"></a>1. 主成分分析</h2><p>优点：降低数据的复杂性，识别最重要的多个特征。</p>
+<p>缺点：不一定需要，且可能损失有用信息。</p>
+<p>使用数据类型：数值型数据</p>
  <a id="more"></a>
-<p>设总体$X$属于离散型，其分布律$P\{ X=x\}=p(x;\theta), \theta \in \Theta$的形式为已知，$\theta$为待估参数，$\Theta$是$\theta$可能取值的范围。设$X_1,X_2,\cdots,X_n$是来自$X$的样本，则$X_1,X_2,\cdots,X_n$的联合分布律为：</p>
+<h2 id="2-在NumPy中实现PCA"><a href="#2-在NumPy中实现PCA" class="headerlink" title="2. 在NumPy中实现PCA"></a>2. 在NumPy中实现PCA</h2><p>将数据转换成前K个主成分的伪码：</p>
+<p>去除平均值（让样本矩阵中心化，即每一个维度减去该维度的均值，使每一维度上的均值为0）</p>
+<p>计算协方差矩阵</p>
+<p>计算协方差矩阵的特征值和特征向量</p>
+<p>将特征值从大到小排序</p>
+<p>保留最上面的K个特征向量</p>
+<p>将数据转换到上述K个特征向量构建的新空间中</p>
+<p>补充阅读：协方差矩阵</p>
+<p>（1）一个维度上方差的定义：</p>
 <script type="math/tex; mode=display">
-\prod_{i=1}^{n}p(x_i;\theta)</script><p>样本$X_1,X_2,\cdots,X_n$取到观察值$x_1,x_2,\cdots,x_n$的概率，即事件$\{X_1=x_1,X_2=x_2,\cdots,X_n=x_n\}$发生的概率为：</p>
+var(X)=\frac{\sum_{i=1}^{n}(X_{i}-{\bar{X}})(X_{i}-{\bar{X}})}{n-1}</script><p>（2）协方差的定义：</p>
 <script type="math/tex; mode=display">
-L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}p(x_i;\theta),\theta\in\Theta</script><p>这一概率随$\theta$的取值而变化，它是$\theta$的函数，$L(\theta)$称为样本的<strong>似然函数</strong>。</p>
-<p>最大似然估计法，就是固定样本观察值$x_1,x_2,\cdots,x_n$，在参数$\theta$取值的可能范围$\Theta$内挑选出一个$\hat\theta$，使得似然函数$L(x_1,x_2,\cdots,x_n;\theta)$达到最大。即：</p>
+cov(X,Y)=\frac{\sum_{i=1}^{n}(X_{i}-{\bar{X}})(Y_{i}-{\bar{Y}})}{n-1}</script><p>方差是协方差的一个特例，X与其自身的协方差就是X的方差。</p>
+<p>分母为n-1是因为随机变量的数学期望未知，以样本均值代替，自由度减一。</p>
+<p>协方差就是定义了两个维度之间的相关性，即这个样本的两个维度之间有没有关系。</p>
+<p>协方差为0，证明这两个维度之间没有关系；协方差为正，两个维度正相关；协方差为负，两个维度负相关。</p>
+<p>（3）协方差矩阵：</p>
+<p>对n个维度，任意两个维度都计算一个协方差，组成矩阵。</p>
 <script type="math/tex; mode=display">
-\hat\theta=\mathop{\arg\max}_{\theta\in\Theta}L(x_1,x_2,\cdots,x_n;\theta)</script><p>这样得到的$\hat\theta$与样本值$x_1,x_2,\cdots,x_n$有关，常记为$\hat\theta(x_1,x_2,\cdots,x_n)$，称为参数$\theta$的<strong>最大似然估计值</strong>，而相应的统计量$\hat\theta(X_1,X_2,\cdots,X_n)$称为参数$\theta$的<strong>最大似然估计量</strong>。</p>
-<h2 id="为什么要有参数估计？"><a href="#为什么要有参数估计？" class="headerlink" title="为什么要有参数估计？"></a>为什么要有参数估计？</h2><p>当模型已定，参数未知时。</p>
-<p>例如，假设我们知道全国人民的身高服从正态分布，但不知道均值和方差。这时可以通过采样，观察其结果，然后再用样本数据的结果推出正态分布的均值与方差的最大概率值，这样就可以知道全国人民的身高分布的函数。</p>
-<h2 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h2><p><span>1. </span> 抛硬币。现有一个正反面不是很均匀的硬币，如果正面朝上记为H，反面朝上记为T，抛10次的结果如下：</p>
-<p>   T, H, T, T, H, T, T, T, H, T</p>
-<p>   求这个硬币正面朝上的概率有多大？</p>
-<p>   很显然，这个概率是0.3。现在用MLE的思想来求解它。</p>
-<p>   设$x_1,x_2,\cdots,x_n$是相应于样本$X_1,X_2,\cdots,X_n$的一个样本值。</p>
-<p>   不妨用$x_i=1$表示正面朝上，$x_i=0$表示反面朝上</p>
-<p>   设正面朝上的概率为$\theta$，抛硬币服从二项分布$X \sim b(1,\theta)$，$X$的分布律为：</p>
+C_{n \times n}=( c_{i,j}, c_{i,j}=cov(Dim_{i},Dim_{j}))</script><p>直观地，对于一个含有x，y，z三个维度的样本，协方差矩阵如下：</p>
 <script type="math/tex; mode=display">
-   P\{X=x\}=p(x;\theta)=\theta^x (1-\theta)^{1-x},    x=0,1</script><p>   似然函数为：</p>
+C=\begin{pmatrix}
+cov(x,x) & cov(x,y) & cov(x,z)\\ 
+cov(y,x) & cov(y,y) & cov(y,z)\\ 
+cov(z,x) & cov(z,y) & cov(z,z)
+\end{pmatrix}</script><p>可以看出，对角线表示了样本在各个维度上的方差，其他元素表示不同维度两两之间的相关性。</p>
+<p>例：</p>
+<p>假设原始数据为5个样本，每个样本有2个特征x和y。矩阵是：</p>
 <script type="math/tex; mode=display">
-   L(\theta)=\prod_{i=1}^{n}p(x_i;\theta)=\prod_{i=1}^{n}\theta^{x_i}(1-\theta)^{1-x_i}</script><p>   取对数后，为</p>
+Data =
+\begin{bmatrix}
+1 & -1\\ 
+1 & 1\\ 
+2 & 1\\ 
+2 & 2\\ 
+4 & 2
+\end{bmatrix}</script><p>第一步，样本矩阵中心化（计算每个维度的均值，所有样本都减去均值）</p>
+<p>维度x的均值为2，维度y的均值为1。</p>
+<p>各维度去均值后，矩阵是：</p>
+<script type="math/tex; mode=display">
+DataAdjust = 
+\begin{bmatrix}
+-1 & -2\\ 
+-1 & 0\\ 
+0 & 0\\ 
+0 & 1\\ 
+2 & 1
+\end{bmatrix}</script><p>这时，两个维度上的均值都为0。</p>
+<p>第二步，计算协方差矩阵</p>
+<p>协方差矩阵：</p>
 <script type="math/tex; mode=display">
 \begin{align*}
-   ln L(\theta)&=ln\prod_{i=1}^{n}\theta^{x_i}(1-\theta)^{1-x_i}\\
-   &=\sum_{i=1}^{n}ln[\theta^{x_i}(1-\theta)^{1-x_i}]\\
-   &=\sum_{i=1}^{n}[ln\theta^{x_i}+ln(1-\theta)^{1-x_i}]\\
-   &=\sum_{i=1}^{n}[x_iln\theta+(1-x_i)ln(1-\theta)]\\
-   &=\sum_{i=1}^{n}x_iln\theta+(n-\sum_{i=1}^{n}x_i)ln(1-\theta)
-   \end{align*}</script><p>   求导：</p>
+C &=
+\begin{bmatrix}
+cov(x,x) & cov(x,y)\\ 
+cov(y,x) & cov(y,y)
+\end{bmatrix}\\
+&=
+\begin{bmatrix}
+\frac{(-1) \times (-1) + (-1) \times (-1) + 0 \times 0 + 0 \times 0 + 2 \times 2}{4} & 
+\frac{(-1) \times (-2) + (-1) \times (0) + 0 \times 0 + 0 \times 1 + 2 \times 1}{4}\\ 
+\frac{(-2) \times (-1) + (0) \times (-1) + 0 \times 0 + 1 \times 0 + 1 \times 2}{4}  & 
+\frac{(-2) \times (-2) + (0) \times (0) + 0 \times 0 + 1 \times 1 + 1 \times 1}{4}
+\end{bmatrix}\\
+&=
+\begin{bmatrix}
+1.5 & 1.0\\ 
+1.0 & 1.5
+\end{bmatrix}
+\end{align*}</script><p>第三步，计算协方差矩阵的特征值和特征向量</p>
 <script type="math/tex; mode=display">
-   \frac{\partial ln L(\theta)}{\partial \theta}=\frac{\sum_{i=1}^{n} x_i}{\theta}-\frac{n-\sum_{i=1}^{n} x_i}{1-\theta}</script><p>   令$\frac{\partial ln L(\theta)}{\partial \theta}=0$，可得：</p>
+eigenValues=\begin{pmatrix}
+2.5 & 0.5
+\end{pmatrix}</script><script type="math/tex; mode=display">
+eigenVectors=\begin{pmatrix}
+0.70710678 & -0.70710678\\
+0.70710678 & 0.70710678
+\end{pmatrix}</script><p>特征值2.5对应的特征向量是eigenVectors的第1列：</p>
 <script type="math/tex; mode=display">
-\hat \theta = \frac{\sum_{i=1}^{n} x_i}{n}</script><p>   可知概率$\hat \theta=0.3$</p>
-<p><span>2. </span> 设$X \sim N(\mu, \sigma^2)$, $\mu, \sigma^2$为未知参数，$x_1,x_2,\cdots,x_n$是来自$X$的一个样本值。求$\mu, \sigma^2$的最大似然估计量。</p>
-<p>   解：$X$的概率密度为：</p>
+\begin{pmatrix}
+0.70710678\\
+0.70710678
+\end{pmatrix}</script><p>特征值0.5对应的特征向量是eigenVectors的第2列：</p>
 <script type="math/tex; mode=display">
-   f(x;\mu,\sigma^2)=\frac{1}{\sqrt{2\pi}\sigma}exp[-\frac{1}{2\sigma^2}(x-\mu)^2]</script><p>   似然函数为：</p>
+\begin{pmatrix}
+-0.70710678\\
+0.70710678
+\end{pmatrix}</script><p>第四步，将特征值按照从大到小的顺序排列，选择其中最大的k个，然后将其对应的k个特征向量分别作为列向量组成特征向量矩阵</p>
+<p>这里特征值只有2个，我们选取最大的那个2.5，对应的特征向量是：</p>
 <script type="math/tex; mode=display">
-   \begin{align*}
-   L(\mu,\sigma^2)&=\prod_{i=1}^n \frac{1}{\sqrt{2\pi}\sigma}exp[-\frac{1}{2\sigma^2}(x_i-\mu)^2]\\
-   &=(\frac{1}{\sqrt{2\pi}\sigma})^n exp[-\frac{1}{2\sigma^2}\sum_{i=1}^n (x_i-\mu)^2]\\
-   &=(\frac{1}{2\pi \sigma^2})^{\frac{n}{2}} exp[-\frac{1}{2\sigma^2}\sum_{i=1}^n (x_i-\mu)^2]\\
-   &=(2\pi)^{-\frac{n}{2}}(\sigma^2)^{-\frac{n}{2}}exp[-\frac{1}{2\sigma^2}\sum_{i=1}^n (x_i-\mu)^2]
-   \end{align*}</script><p>   它的对数：</p>
+\begin{pmatrix}0.70710678\\0.70710678\end{pmatrix}</script><p>第五步，将样本点投影到选取的特征向量上。</p>
+<p>假设样本数为m，特征数为n，减去均值后的样本矩阵为DataAdjust(m×n)，协方差矩阵为C(n×n)，选取的k个特征向量组成的矩阵为TopEigenVectors(n×k)，那么投影后的低维数据LowDimData为：</p>
 <script type="math/tex; mode=display">
-   ln L(\mu,\sigma^2)=-\frac{n}{2}ln(2\pi)-\frac{n}{2}ln(\sigma^2)-\frac{1}{2\sigma^2}\sum_{i=1}^n (x_i-\mu)^2</script><p>   令</p>
+LowDimData_{m\times k}=DataAdjust_{m \times n} \times TopEigenVectors_{n \times k}</script><p>这里是</p>
 <script type="math/tex; mode=display">
-   \left\{
-       \begin{array}{l}
-           \frac{\partial ln L(\mu,\sigma^2)}{\partial \mu}=\frac{1}{\sigma^2}\Sigma_{i=1}^n(x_i-\mu)=0\\
+LowDimData=
+\begin{bmatrix}
+-1 & -2\\ 
+-1 & 0\\ 
+0 & 0\\ 
+0 & 1\\ 
+2 & 1
+\end{bmatrix}
+ \times 
+\begin{pmatrix}
+0.70710678\\
+0.70710678
+\end{pmatrix}
+=
+\begin{bmatrix}
+-2.12132034\\ 
+-0.70710678\\ 
+0\\ 
+0.70710678\\ 
+2.12132034
+\end{bmatrix}</script><p>这样就将原始样本的n维（这个例子n=2）特征变成了k维（这个例子k=1），这k维就是原始特征在k维上的投影。</p>
+<p>第六步，查看重构之后的数据，用于调试（假设K取值为n，重构回去的数据reconMat应该与原始数据Data重合）</p>
+<script type="math/tex; mode=display">
+reconMat = (LowDimData * TopEigenVectors.T) + meanVals</script><p>程序清单 PCA算法</p>
+<pre><code class="lang-python">from numpy import *
+import matplotlib
+import matplotlib.pyplot as plt
 
-           \frac{\partial ln L(\mu,\sigma^2)}{\partial \sigma^2}= -\frac{n}{2\sigma^2} + \frac{1}{2 \sigma^4}\sum_{i=1}^n (x_i-\mu)^2=0
-       \end{array}
-   \right.</script><p>   联合求解，得到参数$\mu$和$\sigma^2$的最大似然估计值分别为：</p>
-<script type="math/tex; mode=display">
-   \left\{
-       \begin{array}{l}
-           \hat \mu = \overline x = \frac{1}{n} \sum_{i=1}^n x_i\\
+def loadDataSet(fileName, delim=&#39;\t&#39;):
+    fr = open(fileName)
+    stringArr = [line.strip().split(delim) for line in fr.readlines()]
+    datArr = [list(map(float,line)) for line in stringArr]
+    # python3 needs list()
+    return mat(datArr)
 
-           \hat \sigma^2 = \frac{1}{n} \sum_{i=1}^n (x_i-\overline x)^2
-       \end{array}
-   \right.</script><p>   相应的最大似然估计量分别为：    $\hat \mu=\bar X$,       $\hat \sigma^2=\frac{1}{n}\sum_{i=1}^n (X_i- \overline X)$</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>求最大似然估计值的一般步骤：</p>
-<p>（1）写出总体$X$的分布律$p(x; \theta)$（$X$为离散型随机变量）或者概率密度$f(x; \theta)$（$X$为连续型随机变量）</p>
-<p>（2）写出样本的似然函数$L(\theta)$ </p>
-<p>离散型：$L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}p(x_i;\theta)$<br>连续型：$L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}f(x_i;\theta)$</p>
-<p>（3）对似然函数取对数     $ln L(\theta)$</p>
-<p>（4）求偏导     $\frac{\partial ln L(\theta)}{\partial \theta}$</p>
-<p>（5）解方程（组） $\frac{\partial ln L(\theta)}{\partial \theta}=0$，得到参数$\theta$的最大似然估计值$\hat \theta$</p>
-<p>注：参数可能是一个（如例1，只有一个参数$\theta$），也可能是一组（如例2，有两个参数：$\mu, \sigma^2$），一组参数时，求解方法类似。</p>
-<p><br></p>
+def pca(dataMat, topNfeat=9999999):
+    meanVals = mean(dataMat, axis=0)
+    dataAdjust = dataMat - meanVals #remove mean
+    covMat = cov(dataAdjust, rowvar=0)
+    eigVals,eigVects = linalg.eig(mat(covMat))
+    eigValInd = argsort(eigVals)            #sort, sort goes smallest to largest
+    eigValInd = eigValInd[:-(topNfeat+1):-1]  #cut off unwanted dimensions
+    topEigVects = eigVects[:,eigValInd]       #reorganize eig vects largest to smallest
+    lowDimDataMat = dataAdjust * topEigVects#transform data into new dimensions
+    reconMat = (lowDimDataMat * topEigVects.T) + meanVals
+    return lowDimDataMat, reconMat
+
+dataMat = loadDataSet(&#39;testSet.txt&#39;)
+lowDimDataMat, reconMat = pca(dataMat, 1)
+
+fig = plt.figure()
+ax = fig.add_subplot(111)
+ax.scatter(dataMat[:,0].flatten().A[0],  dataMat[:,1].flatten().A[0], marker=&#39;^&#39;, s=90)
+ax.scatter(reconMat[:,0].flatten().A[0], reconMat[:,1].flatten().A[0], marker=&#39;o&#39;, s=50, c=&#39;red&#39;)
+plt.show()
+</code></pre>
+<p>运行结果如图1：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/assets/pca/Figure_1.png" alt title>
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<p><center> <font size="2" color="gray">图1 原始数据集(三角形)及第一主成分(圆形)</font>  </center><br>用到的数据集<a href="/assets/pca/testSet.txt">testSet.txt</a></p>
 <p><strong>参考文献：</strong></p>
-<p>[1] 盛骤, 谢式千, 潘承毅.  概率论与数理统计（第四版）[M].  北京: 高等教育出版社, 2008.</p>
+<p>[1]  (美) Harrington Peter著.  机器学习实战[M]. 李锐, 李鹏, 曲亚东, 王斌, 译.  北京: 人民邮电出版社, 2013.</p>
 
         </div>
 
@@ -291,12 +383,12 @@ L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}p(x_i;\theta),\theta\in\Th
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-06-04T15:45:20.366Z" itemprop="dateUpdated">2019-06-04 23:45:20</time>
+    最后更新时间：<time datetime="2019-06-04T16:01:38.304Z" itemprop="dateUpdated">2019-06-05 00:01:38</time>
 </span><br>
 
 
         
-        	本文作者：吴光生  <br>本文链接：<a href target="_blank" rel="external">https://wgs666.github.io/2019/06/02/mle/</a><br>转载请注明作者及出处，谢谢！
+        	本文作者：吴光生  <br>本文链接：<a href target="_blank" rel="external">https://wgs666.github.io/2019/06/04/pca/</a><br>转载请注明作者及出处，谢谢！
         
     </div>
     
@@ -317,7 +409,7 @@ L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}p(x_i;\theta),\theta\in\Th
 
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/机器学习/">机器学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/概率统计/">概率统计</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/机器学习/">机器学习</a></li></ul>
 
 
             
@@ -327,7 +419,7 @@ L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}p(x_i;\theta),\theta\in\Th
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://wgs666.github.io/2019/06/02/mle/&title=《最大似然估计(MLE)》 — 路漫漫其修远兮，吾将上下而求索&pic=https://wgs666.github.io/img/wgs.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://wgs666.github.io/2019/06/04/pca/&title=《主成分分析（PCA）》 — 路漫漫其修远兮，吾将上下而求索&pic=https://wgs666.github.io/img/wgs.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -337,22 +429,24 @@ L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}p(x_i;\theta),\theta\in\Th
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wgs666.github.io/2019/06/02/mle/&title=《最大似然估计(MLE)》 — 路漫漫其修远兮，吾将上下而求索&source=什么是最大似然估计？最大似然估计（Maximum Likelihood Estimation）是一种参数估计的方法。其核心思想是：找到参数$\theta$..." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wgs666.github.io/2019/06/04/pca/&title=《主成分分析（PCA）》 — 路漫漫其修远兮，吾将上下而求索&source=1. 主成分分析优点：降低数据的复杂性，识别最重要的多个特征。
+缺点：不一定需要，且可能损失有用信息。
+使用数据类型：数值型数据" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://wgs666.github.io/2019/06/02/mle/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://wgs666.github.io/2019/06/04/pca/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《最大似然估计(MLE)》 — 路漫漫其修远兮，吾将上下而求索&url=https://wgs666.github.io/2019/06/02/mle/&via=https://wgs666.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《主成分分析（PCA）》 — 路漫漫其修远兮，吾将上下而求索&url=https://wgs666.github.io/2019/06/04/pca/&via=https://wgs666.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://wgs666.github.io/2019/06/02/mle/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://wgs666.github.io/2019/06/04/pca/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -372,21 +466,14 @@ L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}p(x_i;\theta),\theta\in\Th
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between">
-  
-    <div class="waves-block waves-effect prev">
-      <a href="../../03/first-blog/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">first-blog</h4>
-      </a>
-    </div>
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="../hello-world/" id="post-next" class="post-nav-link">
+      <a href="../../03/first-blog/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">Hello World</h4>
+        <h4 class="title">first-blog</h4>
       </a>
     </div>
   
@@ -527,7 +614,7 @@ L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}p(x_i;\theta),\theta\in\Th
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://wgs666.github.io/2019/06/02/mle/&title=《最大似然估计(MLE)》 — 路漫漫其修远兮，吾将上下而求索&pic=https://wgs666.github.io/img/wgs.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://wgs666.github.io/2019/06/04/pca/&title=《主成分分析（PCA）》 — 路漫漫其修远兮，吾将上下而求索&pic=https://wgs666.github.io/img/wgs.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -537,22 +624,24 @@ L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}p(x_i;\theta),\theta\in\Th
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wgs666.github.io/2019/06/02/mle/&title=《最大似然估计(MLE)》 — 路漫漫其修远兮，吾将上下而求索&source=什么是最大似然估计？最大似然估计（Maximum Likelihood Estimation）是一种参数估计的方法。其核心思想是：找到参数$\theta$..." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wgs666.github.io/2019/06/04/pca/&title=《主成分分析（PCA）》 — 路漫漫其修远兮，吾将上下而求索&source=1. 主成分分析优点：降低数据的复杂性，识别最重要的多个特征。
+缺点：不一定需要，且可能损失有用信息。
+使用数据类型：数值型数据" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://wgs666.github.io/2019/06/02/mle/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://wgs666.github.io/2019/06/04/pca/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《最大似然估计(MLE)》 — 路漫漫其修远兮，吾将上下而求索&url=https://wgs666.github.io/2019/06/02/mle/&via=https://wgs666.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《主成分分析（PCA）》 — 路漫漫其修远兮，吾将上下而求索&url=https://wgs666.github.io/2019/06/04/pca/&via=https://wgs666.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://wgs666.github.io/2019/06/02/mle/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://wgs666.github.io/2019/06/04/pca/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -563,7 +652,7 @@ L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}p(x_i;\theta),\theta\in\Th
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABvklEQVR42u3ay04DMRAEwPz/TweJExKwdI9jZ5HKpygv115anhk/HvF6fq6vr7+/89unyX++eOHi4i5zn5frGpT8tn3I6//BxcU9yc3DKw+ghJgbcHFx78m9psxiCxcX979z822S+MPFxb0/Nyl+8kNP/hgbazVcXNwF7qxh+trX2/u7uLi4L5pKtFG1EmfR7ri4uEe47TZ5ATNri0Qxh4uLu5nbNj2TFkleuuQDV1xc3JPcPETyqxWz9koRrLi4uJu5yZElx83GJEUU4uLi3oC7PjpdKZ9+eCRcXNzj3PY40pY3+ftR/wYXF3cbt/3B7LDSjldxcXHvwE0QbaHSxl/ROsHFxT3CbXFtYdOOZKLgw8XF3cbNI6yNvPUrGtEoBRcXdwO3xRW3veJhSVtE4eLi7ubOypsWPSulcHFx38ttG6ntFY26a5vPhHFxcbdx8zWLqllbZLgBLi7uMrcNlHakmpRSs09xcXF3c9vyJg+pvGGaHJJwcXHPc9vwyuntHbE/voOLi3sz7vrRp919KchwcXEPcmfHl9kEGBcX973cfAg6G6K0uBe0RXBxcRe4bcN01lqdXeHCxcU9zv0ApeoGHCyZdXcAAAAASUVORK5CYII=" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABvklEQVR42u3awa6EIAwFUP//p33J24u9BdFJDisjDh5n0UDb4yiP83+M719dp2suGLi4uNPccziulh7fuZodf97YgIuLu59bCVJXS1QQvcCHi4v7fW59g1IPW7i4uL/OHW9cerO4uLhf5lYOP/Xg1Qtzi89quLi4E9w0YfrE9YP5XVxc3JB7hiNdZ/HbcXFxt3DTlEe93NKbLYU5XFzch7lpKTQtt6S/vTlE4eLibuHWH02TJumTQWDFxcXdzp1/WVomiUMhLi7uw9ygtNlqs0gPWjdbLlxc3C3ctAGr156V3r/5s3BxcV/izpdPKgnT9CNxcXF3ctMtS72Rq1JEScswuLi4e7iVV/a2JuOwWJnFxcXdz60kK2dSJGlQuzks4eLibuFWlqsQ07NJJbTFCVNcXNxF3HpjZX07Mp9GwcXF/QI3TZXOhKQjHLi4uG9x6yMNdjNpkSAW4uLiLuWmASUtfqxq7Ig/BhcXd5q7p2iatnpcBjhcXNyN3HrDVvpML4EST+Pi4r7E7RVNex+wIJDh4uK+yq2URnoVYFxc3He59SJo2mI1s+ZUWgQXF3eC20uYpo1ZvRYuXFzc7dw/rYnnHpqzrrwAAAAASUVORK5CYII=" alt="微信分享二维码">
 </div>
 
 

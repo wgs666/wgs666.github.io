@@ -21,17 +21,17 @@
     
     
     <meta name="keywords" content>
-    <meta name="description" content=".md-toc {     font-size: 25px; }   [TOC] 最大似然估计（MLE）什么是最大似然估计？最大似然估计（Maximum Likelihood Estimation）是一种参数估计的方法。其核心思想是：找到参数$\theta$的一个估计值，使得当前样本出现的可能性最大。 设总体$X$属于离散型，其分布律$P{X=x}=p(x;\theta), \theta \in">
+    <meta name="description" content=".md-toc {     font-size: 25px; }   [TOC] 最大似然估计（MLE）什么是最大似然估计？最大似然估计（Maximum Likelihood Estimation）是一种参数估计的方法。其核心思想是：找到参数$\theta$的一个估计值，使得当前样本出现的可能性最大。 设总体$X$属于离散型，其分布律$P\{X=x\}=p(x;\theta), \theta \">
 <meta property="og:type" content="website">
 <meta property="og:title" content="路漫漫其修远兮，吾将上下而求索">
 <meta property="og:url" content="https://wgs666.github.io/books/MLE.html">
 <meta property="og:site_name" content="路漫漫其修远兮，吾将上下而求索">
-<meta property="og:description" content=".md-toc {     font-size: 25px; }   [TOC] 最大似然估计（MLE）什么是最大似然估计？最大似然估计（Maximum Likelihood Estimation）是一种参数估计的方法。其核心思想是：找到参数$\theta$的一个估计值，使得当前样本出现的可能性最大。 设总体$X$属于离散型，其分布律$P{X=x}=p(x;\theta), \theta \in">
+<meta property="og:description" content=".md-toc {     font-size: 25px; }   [TOC] 最大似然估计（MLE）什么是最大似然估计？最大似然估计（Maximum Likelihood Estimation）是一种参数估计的方法。其核心思想是：找到参数$\theta$的一个估计值，使得当前样本出现的可能性最大。 设总体$X$属于离散型，其分布律$P\{X=x\}=p(x;\theta), \theta \">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-06-02T04:03:06.627Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="路漫漫其修远兮，吾将上下而求索">
-<meta name="twitter:description" content=".md-toc {     font-size: 25px; }   [TOC] 最大似然估计（MLE）什么是最大似然估计？最大似然估计（Maximum Likelihood Estimation）是一种参数估计的方法。其核心思想是：找到参数$\theta$的一个估计值，使得当前样本出现的可能性最大。 设总体$X$属于离散型，其分布律$P{X=x}=p(x;\theta), \theta \in">
+<meta name="twitter:description" content=".md-toc {     font-size: 25px; }   [TOC] 最大似然估计（MLE）什么是最大似然估计？最大似然估计（Maximum Likelihood Estimation）是一种参数估计的方法。其核心思想是：找到参数$\theta$的一个估计值，使得当前样本出现的可能性最大。 设总体$X$属于离散型，其分布律$P\{X=x\}=p(x;\theta), \theta \">
     
         <link rel="alternate" type="application/atom+xml" title="路漫漫其修远兮，吾将上下而求索" href="../atom.xml">
     
@@ -54,7 +54,7 @@
         <i class="icon icon-lg icon-list-ul"></i>
     </a>
     <div class="brand-wrap" style="background-image:url(../img/back_blue.png)">
-      <div class="brand">
+      <div class="brand" align="center">
         <a href="../index.html" class="avatar waves-effect waves-circle waves-light">
           <img src="../img/wgs.jpg">
         </a>
@@ -167,9 +167,9 @@
 
 <p>[TOC]</p>
 <h1 id="最大似然估计（MLE）"><a href="#最大似然估计（MLE）" class="headerlink" title="最大似然估计（MLE）"></a>最大似然估计（MLE）</h1><h2 id="什么是最大似然估计？"><a href="#什么是最大似然估计？" class="headerlink" title="什么是最大似然估计？"></a>什么是最大似然估计？</h2><p>最大似然估计（Maximum Likelihood Estimation）是一种参数估计的方法。其核心思想是：找到参数$\theta$的一个估计值，使得当前样本出现的可能性最大。</p>
-<p>设总体$X$属于离散型，其分布律$P{X=x}=p(x;\theta), \theta \in \Theta$的形式为已知，$\theta$为待估参数，$\Theta$是$\theta$可能取值的范围。设$X_1,X_2,\cdots,X_n$是来自$X$的样本，则$X_1,X_2,\cdots,X_n$的联合分布律为：</p>
+<p>设总体$X$属于离散型，其分布律$P\{X=x\}=p(x;\theta), \theta \in \Theta$的形式为已知，$\theta$为待估参数，$\Theta$是$\theta$可能取值的范围。设$X_1,X_2,\cdots,X_n$是来自$X$的样本，则$X_1,X_2,\cdots,X_n$的联合分布律为：</p>
 <script type="math/tex; mode=display">
-\prod_{i=1}^{n}p(x_i;\theta)</script><p>样本$X_1,X_2,\cdots,X_n$取到观察值$x_1,x_2,\cdots,x_n$的概率，即事件${X_1=x_1,X_2=x_2,\cdots,X_n=x_n}$发生的概率为：</p>
+\prod_{i=1}^{n}p(x_i;\theta)</script><p>样本$X_1,X_2,\cdots,X_n$取到观察值$x_1,x_2,\cdots,x_n$的概率，即事件$\{X_1=x_1,X_2=x_2,\cdots,X_n=x_n\}$发生的概率为：</p>
 <script type="math/tex; mode=display">
 L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}p(x_i;\theta),\theta\in\Theta</script><p>这一概率随$\theta$的取值而变化，它是$\theta$的函数，$L(\theta)$称为样本的<strong>似然函数</strong>。</p>
 <p>最大似然估计法，就是固定样本观察值$x_1,x_2,\cdots,x_n$，在参数$\theta$取值的可能范围$\Theta$内挑选出一个$\hat\theta$，使得似然函数$L(x_1,x_2,\cdots,x_n;\theta)$达到最大。即：</p>
@@ -239,8 +239,8 @@ ln L(\mu,\sigma^2)=-\frac{n}{2}ln(2\pi)-\frac{n}{2}ln(\sigma^2)-\frac{1}{2\sigma
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>求最大似然估计值的一般步骤：</p>
 <p>（1）写出总体$X$的分布律$p(x; \theta)$（$X$为离散型随机变量）或者概率密度$f(x; \theta)$（$X$为连续型随机变量）</p>
 <p>（2）写出样本的似然函数$L(\theta)$ </p>
-<p>离散型：$L(\theta)=L(x<em>1,x_2,\cdots,x_n;\theta)=\prod</em>{i=1}^{n}p(x_i;\theta)$</p>
-<p>连续型：$L(\theta)=L(x<em>1,x_2,\cdots,x_n;\theta)=\prod</em>{i=1}^{n}f(x_i;\theta)$</p>
+<p>离散型：$L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}p(x_i;\theta)$</p>
+<p>连续型：$L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}f(x_i;\theta)$</p>
 <p>（3）对似然函数取对数     $ln L(\theta)$</p>
 <p>（4）求偏导     $\frac{\partial ln L(\theta)}{\partial \theta}$</p>
 <p>（5）解方程（组） $\frac{\partial ln L(\theta)}{\partial \theta}=0$，得到参数$\theta$的最大似然估计值$\hat \theta$</p>
@@ -376,7 +376,7 @@ ln L(\mu,\sigma^2)=-\frac{n}{2}ln(2\pi)-\frac{n}{2}ln(\sigma^2)-\frac{1}{2\sigma
         </div>
         
         <label class="reward-toggle">
-            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="../img/wechat.png" data-alipay="../img/alipay.jpg">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="../img/wechat.png" data-alipay="../img/alipay.png">
             <div class="reward-toggle-ctrol">
                 <span class="reward-toggle-item wechat">微信</span>
                 <span class="reward-toggle-item switch">切换</span>
