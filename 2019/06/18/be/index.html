@@ -29,7 +29,7 @@
 <meta property="og:site_name" content="吴光生的主页">
 <meta property="og:description" content="除了样本的信息，还有参数的先验信息。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-18T07:39:32.417Z">
+<meta property="og:updated_time" content="2019-06-18T07:49:53.716Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="贝叶斯估计">
 <meta name="twitter:description" content="除了样本的信息，还有参数的先验信息。">
@@ -215,12 +215,12 @@ P\{X=x\}=p(x|\theta)=\theta^x (1-\theta)^{1-x},    x=0,1</script><p>已知先验
 <script type="math/tex; mode=display">
 \begin{align*}
 p(\theta|x_1,x_2,\cdots,x_n)&=\frac{p(\theta,x_1,x_2,\cdots,x_n)}{p(x_1,x_2,\cdots,x_n)}\\ 
-& \color{red} 注：联合密度除以边际密度\\
+& \color{red} {注：联合密度除以边际密度}\\
 &=\frac{p(\theta)p(x_1|\theta)p(x_2|\theta)\cdots p(x_n|\theta)}{\int p(\theta,x_1,x_2,\cdots,x_n)d\theta}\\
-& \color{red} 注：分母积分后与\theta无关\\
+& \color{red} {注：分母积分后与\theta无关}\\
 &= C \theta^{\alpha-1}(1-
 \theta)^{\beta-1}\Pi_{i=1}^n \theta^{x_i}(1-\theta)^{1-x_i}\\
-& \color{red} 注：C是一个与\theta无关的常数\\
+& \color{red} {注：C是一个与\theta无关的常数}\\
 &=C\theta^{\alpha -1 + \Sigma_{i=1}^n x_i}(1-\theta)^{\beta-1+n- \Sigma_{i=1}^n x_i}
 \end{align*}</script><p>令$L(\theta)=p(\theta|x_1,x_2, \cdots, x_n)$</p>
 <script type="math/tex; mode=display">
@@ -245,7 +245,7 @@ p(\mu|x_1,x_2,\cdots,x_n)&=\frac{p(\mu,x_1,x_2,\cdots,x_n)}{p(x_1,x_2,\cdots,x_n
 &= \frac{p(\mu)p(x_1|\mu)p(x_2|\mu)\cdots p(x_n|\mu)}{\int p(\mu,x_1,x_2,\cdots,x_n) \mathrm{d} \mu}\\
 &= \frac{ \frac{1}{\sqrt{2\pi}\tau}\exp(-\frac{\mu^2}{2\tau^2})\Pi_{i=1}^n\frac{1}{\sqrt{2\pi}\sigma}\exp(-\frac{(x_i-\mu)^2}{2\sigma^2}) } {\int p(\mu,x_1,x_2,\cdots,x_n) \mathrm{d} \mu} \\
 &= C \exp(-\frac{\mu^2}{2\tau^2}) \Pi_{i=1}^n \exp(-\frac{(x_i-\mu)^2}{2\sigma^2})\\
-& \color{red} 注：C是一个与\mu无关的常数\\
+& \color{red} {注：C是一个与\mu无关的常数}\\
 \end{align*}</script><p> 令$L(\mu)=p(\mu|x_1,x_2,\cdots,x_n)$</p>
 <script type="math/tex; mode=display">
 \begin{align*}
@@ -283,7 +283,7 @@ p(\mu|x_1,x_2,\cdots,x_n)&=\frac{p(\mu,x_1,x_2,\cdots,x_n)}{p(x_1,x_2,\cdots,x_n
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-06-18T07:39:32.417Z" itemprop="dateUpdated">2019-06-18 15:39:32</time>
+    最后更新时间：<time datetime="2019-06-18T07:49:53.716Z" itemprop="dateUpdated">2019-06-18 15:49:53</time>
 </span><br>
 
 
