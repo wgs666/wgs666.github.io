@@ -29,7 +29,7 @@
 <meta property="og:site_name" content="吴光生的主页">
 <meta property="og:description" content="除了样本的信息，还有参数的先验信息。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-18T10:10:30.419Z">
+<meta property="og:updated_time" content="2019-06-18T10:53:53.094Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="贝叶斯估计">
 <meta name="twitter:description" content="除了样本的信息，还有参数的先验信息。">
@@ -203,7 +203,7 @@
         <div class="post-content" id="post-content" itemprop="postContent">
             <p>除了样本的信息，还有参数的先验信息。</p>
 <a id="more"></a>
-<p>例1. 抛硬币试验。</p>
+<p><strong>例1.</strong>  抛硬币试验。</p>
 <p>设正面朝上的概率为$\theta$ ,假设未知参数$\theta$的先验概率服从$\beta$分布，记为$\theta \sim Be(\alpha, \beta)$，其概率密度是</p>
 <script type="math/tex; mode=display">
 p(\theta)=\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}\theta^{\alpha-1}(1-\theta)^{\beta-1}</script><p>不妨用$x_i=1$表示正面朝上，$x_i=0$表示反面朝上。<br>抛硬币服从二项分布$X \sim b(1,\theta)$，即$X$的分布律为：</p>
@@ -236,7 +236,7 @@ p(\theta|x_1,x_2,\cdots,x_n)&=\frac{p(\theta,x_1,x_2,\cdots,x_n)}{p(x_1,x_2,\cdo
 <p>$\hat \theta=\frac{\alpha-1}{\alpha+\beta-1}$,  ($x_i=0$)；</p>
 <p>$\hat \theta=\frac{\alpha}{\alpha+\beta-1}$,  ($x_i=1$)。</p>
 <p><br></p>
-<p>例2. 推导下列正态分布均值$\mu$的贝叶斯估计。</p>
+<p><strong>例2.</strong>  推导下列正态分布均值$\mu$的贝叶斯估计。</p>
 <p>样本数据$x_1,x_2,\cdots,x_n$来自正态分布$N(\mu,\sigma^2)$，其中$\mu$未知，$\sigma$已知。假设$\mu$的先验分布为正态分布$\mu \sim N(0, \tau^2)$ ，根据样本$x_1,x_2,\cdots,x_n$写出$\mu$的贝叶斯估计。</p>
 <script type="math/tex; mode=display">
 \begin{align*}
@@ -257,7 +257,7 @@ p(\mu|x_1,x_2,\cdots,x_n)&=\frac{p(\mu,x_1,x_2,\cdots,x_n)}{p(x_1,x_2,\cdots,x_n
 \tau^2 \sum_{i=1}^n x_i = (n \tau^2 + \sigma^2)\mu\\
 \hat \mu = \frac{\sum_{i=1}^n x_i}{n+ \frac{\sigma^2}{\tau^2}}</script><p>当$n \to \infty$时，$\hat \theta \to \frac{1}{n}\sum_{i=1}^n x_i = \overline x$，此时正好是最大似然估计。</p>
 <p><br></p>
-<p>总结：</p>
+<p><strong>总结：</strong></p>
 <p>问题：已知样本集$D=\{x_1,x_2, \cdots, x_n\}$服从某个概率分布，但是参数$\theta$未知。</p>
 <p>最大似然估计</p>
 <p>（1）参数$\theta$是一个未知的定值</p>
@@ -267,11 +267,16 @@ p(\mu|x_1,x_2,\cdots,x_n)&=\frac{p(\mu,x_1,x_2,\cdots,x_n)}{p(x_1,x_2,\cdots,x_n
 <p>（1）参数$\theta$是未知的随机变量，本身服从一定的概率分布（先验分布）</p>
 <p>（2）目标：样本集$D$发生的情况下，哪一个$\theta$发生的概率最大</p>
 <script type="math/tex; mode=display">
-\max \quad p(\theta|D)</script><p>贝叶斯估计求解的一般步骤：</p>
-<p>（1）写出$L(\theta)=p(\theta|D)=\frac{p(D|\theta)p(\theta)}{p(D)}$</p>
-<p>（2）取对数    $\ln L(\theta)$</p>
-<p>（3）求偏导    $\frac{\partial \ln L(\theta)}{\partial \theta}$</p>
-<p>（4）解方程（组）  $\frac{\partial \ln L(\theta)}{\partial \theta}=0$，求解出$\hat \theta$ </p>
+\max \quad p(\theta|D)</script><p><br></p>
+<p>贝叶斯估计求解的一般步骤：</p>
+<p>（1）确定参数$\theta$的先验分布$p(\theta)$ </p>
+<p>（2）由样本集$D=\{x_1,x_2, \cdots, x_n\}$ 求出样本的联合分布$p(D|\theta)$，它是$\theta$的函数：</p>
+<script type="math/tex; mode=display">
+p(D|\theta)= \Pi_{i=1}^n p(x_i|\theta)</script><p>（3）利用贝叶斯公式，求$\theta$的后验分布：</p>
+<script type="math/tex; mode=display">
+L(\theta)=p(\theta|D)=\frac{p(\theta,D)}{p(D)}=\frac{p(D|\theta)p(\theta)}{\int p(\theta,D)\mathrm{d} \theta}</script><p>（4）取对数    $\ln L(\theta)$</p>
+<p>（5）求偏导    $\frac{\partial \ln L(\theta)}{\partial \theta}$</p>
+<p>（6）解方程（组）  $\frac{\partial \ln L(\theta)}{\partial \theta}=0$，求解出$\hat \theta$ </p>
 <p><br></p>
 <p><strong>参考文献：</strong></p>
 <p>[1] 邰淑彩, 孙韫玉, 何娟娟.  应用数理统计（第二版）[M].  武汉: 武汉大学出版社, 2005.</p>
@@ -283,7 +288,7 @@ p(\mu|x_1,x_2,\cdots,x_n)&=\frac{p(\mu,x_1,x_2,\cdots,x_n)}{p(x_1,x_2,\cdots,x_n
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-06-18T10:10:30.419Z" itemprop="dateUpdated">2019-06-18 18:10:30</time>
+    最后更新时间：<time datetime="2019-06-18T10:53:53.094Z" itemprop="dateUpdated">2019-06-18 18:53:53</time>
 </span><br>
 
 
