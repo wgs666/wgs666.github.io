@@ -25,11 +25,11 @@
 <meta name="keywords" content="概率统计,机器学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="最大似然估计(MLE)">
-<meta property="og:url" content="https://wgs666.github.io/2019/06/02/mle/index.html">
+<meta property="og:url" content="https://www.chinawgs.cn/2019/06/02/mle/index.html">
 <meta property="og:site_name" content="吴光生的主页">
 <meta property="og:description" content="什么是最大似然估计？最大似然估计（Maximum Likelihood Estimation）是一种参数估计的方法。其核心思想是：找到参数$\theta$的一个估计值，使得当前样本出现的可能性最大。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-04T15:45:20.366Z">
+<meta property="og:updated_time" content="2019-06-14T08:48:13.912Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="最大似然估计(MLE)">
 <meta name="twitter:description" content="什么是最大似然估计？最大似然估计（Maximum Likelihood Estimation）是一种参数估计的方法。其核心思想是：找到参数$\theta$的一个估计值，使得当前样本出现的可能性最大。">
@@ -71,42 +71,42 @@
             <li class="waves-block waves-effect">
               <a href="../../../../index.html">
                 <i class="icon icon-lg icon-home"></i>
-                主页
+                主页 Home
               </a>
             </li>
         
             <li class="waves-block waves-effect">
               <a href="../../../../archives/">
                 <i class="icon icon-lg icon-archives"></i>
-                归档
+                归档 Archives
               </a>
             </li>
         
             <li class="waves-block waves-effect">
               <a href="../../../../categories/">
                 <i class="icon icon-lg icon-th-list"></i>
-                分类
+                分类 Categories
               </a>
             </li>
         
             <li class="waves-block waves-effect">
               <a href="../../../../tags/">
                 <i class="icon icon-lg icon-tags"></i>
-                标签
+                标签 Tags
               </a>
             </li>
         
             <li class="waves-block waves-effect">
               <a href="https://github.com/wgs666">
                 <i class="icon icon-lg icon-github"></i>
-                代码
+                代码 Codes
               </a>
             </li>
         
             <li class="waves-block waves-effect">
               <a href="../../../../about/">
                 <i class="icon icon-lg icon-info-circle"></i>
-                关于
+                关于 About
               </a>
             </li>
         
@@ -226,27 +226,27 @@ L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}p(x_i;\theta),\theta\in\Th
 <p>   很显然，这个概率是0.3。现在用MLE的思想来求解它。</p>
 <p>   设$x_1,x_2,\cdots,x_n$是相应于样本$X_1,X_2,\cdots,X_n$的一个样本值。</p>
 <p>   不妨用$x_i=1$表示正面朝上，$x_i=0$表示反面朝上</p>
-<p>   设正面朝上的概率为$\theta$，抛硬币服从二项分布$X \sim b(1,\theta)$，$X$的分布律为：</p>
+<p>   设正面朝上的概率为$\theta$，抛硬币服从二项分布$X \sim b(1,\theta)$，即$X$的分布律为：</p>
 <script type="math/tex; mode=display">
-   P\{X=x\}=p(x;\theta)=\theta^x (1-\theta)^{1-x},    x=0,1</script><p>   似然函数为：</p>
+P\{X=x\}=p(x;\theta)=\theta^x (1-\theta)^{1-x},    x=0,1</script><p>   似然函数为：</p>
 <script type="math/tex; mode=display">
    L(\theta)=\prod_{i=1}^{n}p(x_i;\theta)=\prod_{i=1}^{n}\theta^{x_i}(1-\theta)^{1-x_i}</script><p>   取对数后，为</p>
 <script type="math/tex; mode=display">
 \begin{align*}
-   ln L(\theta)&=ln\prod_{i=1}^{n}\theta^{x_i}(1-\theta)^{1-x_i}\\
-   &=\sum_{i=1}^{n}ln[\theta^{x_i}(1-\theta)^{1-x_i}]\\
-   &=\sum_{i=1}^{n}[ln\theta^{x_i}+ln(1-\theta)^{1-x_i}]\\
-   &=\sum_{i=1}^{n}[x_iln\theta+(1-x_i)ln(1-\theta)]\\
-   &=\sum_{i=1}^{n}x_iln\theta+(n-\sum_{i=1}^{n}x_i)ln(1-\theta)
+   \ln L(\theta)&=\ln \prod_{i=1}^{n}\theta^{x_i}(1-\theta)^{1-x_i}\\
+   &=\sum_{i=1}^{n}\ln[\theta^{x_i}(1-\theta)^{1-x_i}]\\
+   &=\sum_{i=1}^{n}[\ln \theta^{x_i}+\ln(1-\theta)^{1-x_i}]\\
+   &=\sum_{i=1}^{n}[x_i \ln \theta+(1-x_i)\ln(1-\theta)]\\
+   &=\sum_{i=1}^{n}x_i \ln \theta+(n-\sum_{i=1}^{n}x_i)\ln(1-\theta)
    \end{align*}</script><p>   求导：</p>
 <script type="math/tex; mode=display">
-   \frac{\partial ln L(\theta)}{\partial \theta}=\frac{\sum_{i=1}^{n} x_i}{\theta}-\frac{n-\sum_{i=1}^{n} x_i}{1-\theta}</script><p>   令$\frac{\partial ln L(\theta)}{\partial \theta}=0$，可得：</p>
+\frac{\partial \ln L(\theta)}{\partial \theta}=\frac{\sum_{i=1}^{n} x_i}{\theta}-\frac{n-\sum_{i=1}^{n} x_i}{1-\theta}</script><p>   令$\frac{\partial \ln L(\theta)}{\partial \theta}=0$，可得：</p>
 <script type="math/tex; mode=display">
 \hat \theta = \frac{\sum_{i=1}^{n} x_i}{n}</script><p>   可知概率$\hat \theta=0.3$</p>
 <p><span>2. </span> 设$X \sim N(\mu, \sigma^2)$, $\mu, \sigma^2$为未知参数，$x_1,x_2,\cdots,x_n$是来自$X$的一个样本值。求$\mu, \sigma^2$的最大似然估计量。</p>
 <p>   解：$X$的概率密度为：</p>
 <script type="math/tex; mode=display">
-   f(x;\mu,\sigma^2)=\frac{1}{\sqrt{2\pi}\sigma}exp[-\frac{1}{2\sigma^2}(x-\mu)^2]</script><p>   似然函数为：</p>
+f(x;\mu,\sigma^2)=\frac{1}{\sqrt{2\pi}\sigma}exp[-\frac{1}{2\sigma^2}(x-\mu)^2]</script><p>   似然函数为：</p>
 <script type="math/tex; mode=display">
    \begin{align*}
    L(\mu,\sigma^2)&=\prod_{i=1}^n \frac{1}{\sqrt{2\pi}\sigma}exp[-\frac{1}{2\sigma^2}(x_i-\mu)^2]\\
@@ -255,13 +255,13 @@ L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}p(x_i;\theta),\theta\in\Th
    &=(2\pi)^{-\frac{n}{2}}(\sigma^2)^{-\frac{n}{2}}exp[-\frac{1}{2\sigma^2}\sum_{i=1}^n (x_i-\mu)^2]
    \end{align*}</script><p>   它的对数：</p>
 <script type="math/tex; mode=display">
-   ln L(\mu,\sigma^2)=-\frac{n}{2}ln(2\pi)-\frac{n}{2}ln(\sigma^2)-\frac{1}{2\sigma^2}\sum_{i=1}^n (x_i-\mu)^2</script><p>   令</p>
+\ln L(\mu,\sigma^2)=-\frac{n}{2}\ln(2\pi)-\frac{n}{2}\ln(\sigma^2)-\frac{1}{2\sigma^2}\sum_{i=1}^n (x_i-\mu)^2</script><p>   令</p>
 <script type="math/tex; mode=display">
-   \left\{
+\left\{
        \begin{array}{l}
-           \frac{\partial ln L(\mu,\sigma^2)}{\partial \mu}=\frac{1}{\sigma^2}\Sigma_{i=1}^n(x_i-\mu)=0\\
+           \frac{\partial \ln L(\mu,\sigma^2)}{\partial \mu}=\frac{1}{\sigma^2}\Sigma_{i=1}^n(x_i-\mu)=0\\
 
-           \frac{\partial ln L(\mu,\sigma^2)}{\partial \sigma^2}= -\frac{n}{2\sigma^2} + \frac{1}{2 \sigma^4}\sum_{i=1}^n (x_i-\mu)^2=0
+           \frac{\partial \ln L(\mu,\sigma^2)}{\partial \sigma^2}= -\frac{n}{2\sigma^2} + \frac{1}{2 \sigma^4}\sum_{i=1}^n (x_i-\mu)^2=0
        \end{array}
    \right.</script><p>   联合求解，得到参数$\mu$和$\sigma^2$的最大似然估计值分别为：</p>
 <script type="math/tex; mode=display">
@@ -276,9 +276,9 @@ L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}p(x_i;\theta),\theta\in\Th
 <p>（1）写出总体$X$的分布律$p(x; \theta)$（$X$为离散型随机变量）或者概率密度$f(x; \theta)$（$X$为连续型随机变量）</p>
 <p>（2）写出样本的似然函数$L(\theta)$ </p>
 <p>离散型：$L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}p(x_i;\theta)$<br>连续型：$L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}f(x_i;\theta)$</p>
-<p>（3）对似然函数取对数     $ln L(\theta)$</p>
-<p>（4）求偏导     $\frac{\partial ln L(\theta)}{\partial \theta}$</p>
-<p>（5）解方程（组） $\frac{\partial ln L(\theta)}{\partial \theta}=0$，得到参数$\theta$的最大似然估计值$\hat \theta$</p>
+<p>（3）对似然函数取对数     $\ln L(\theta)$</p>
+<p>（4）求偏导     $\frac{\partial \ln L(\theta)}{\partial \theta}$</p>
+<p>（5）解方程（组） $\frac{\partial \ln L(\theta)}{\partial \theta}=0$，得到参数$\theta$的最大似然估计值$\hat \theta$</p>
 <p>注：参数可能是一个（如例1，只有一个参数$\theta$），也可能是一组（如例2，有两个参数：$\mu, \sigma^2$），一组参数时，求解方法类似。</p>
 <p><br></p>
 <p><strong>参考文献：</strong></p>
@@ -291,17 +291,17 @@ L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}p(x_i;\theta),\theta\in\Th
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-06-04T15:45:20.366Z" itemprop="dateUpdated">2019-06-04 23:45:20</time>
+    最后更新时间：<time datetime="2019-06-14T08:48:13.912Z" itemprop="dateUpdated">2019-06-14 16:48:13</time>
 </span><br>
 
 
         
-        	本文作者：吴光生  <br>本文链接：<a href target="_blank" rel="external">https://wgs666.github.io/2019/06/02/mle/</a><br>转载请注明作者及出处，谢谢！
+        	本文作者：吴光生  <br>本文链接：<a href target="_blank" rel="external">https://www.chinawgs.cn/2019/06/02/mle/</a><br>转载请注明作者及出处，谢谢！
         
     </div>
     
     <footer>
-        <a href="https://wgs666.github.io">
+        <a href="https://www.chinawgs.cn">
             <img src="../../../../img/wgs.jpg" alt="Guangsheng Wu<br>吴光生">
             Guangsheng Wu<br>吴光生
         </a>
@@ -327,7 +327,7 @@ L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}p(x_i;\theta),\theta\in\Th
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://wgs666.github.io/2019/06/02/mle/&title=《最大似然估计(MLE)》 — 吴光生的主页&pic=https://wgs666.github.io/img/wgs.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://www.chinawgs.cn/2019/06/02/mle/&title=《最大似然估计(MLE)》 — 吴光生的主页&pic=https://www.chinawgs.cn/img/wgs.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -337,22 +337,22 @@ L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}p(x_i;\theta),\theta\in\Th
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wgs666.github.io/2019/06/02/mle/&title=《最大似然估计(MLE)》 — 吴光生的主页&source=什么是最大似然估计？最大似然估计（Maximum Likelihood Estimation）是一种参数估计的方法。其核心思想是：找到参数$\theta$..." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://www.chinawgs.cn/2019/06/02/mle/&title=《最大似然估计(MLE)》 — 吴光生的主页&source=什么是最大似然估计？最大似然估计（Maximum Likelihood Estimation）是一种参数估计的方法。其核心思想是：找到参数$\theta$..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://wgs666.github.io/2019/06/02/mle/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://www.chinawgs.cn/2019/06/02/mle/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《最大似然估计(MLE)》 — 吴光生的主页&url=https://wgs666.github.io/2019/06/02/mle/&via=https://wgs666.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《最大似然估计(MLE)》 — 吴光生的主页&url=https://www.chinawgs.cn/2019/06/02/mle/&via=https://www.chinawgs.cn" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://wgs666.github.io/2019/06/02/mle/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://www.chinawgs.cn/2019/06/02/mle/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -375,9 +375,9 @@ L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}p(x_i;\theta),\theta\in\Th
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="waves-block waves-effect prev">
-      <a href="../../03/first-blog/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">first-blog</h4>
+      <a href="../../04/pca/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> 上一篇(Prev)</div>
+        <h4 class="title">主成分分析（PCA）</h4>
       </a>
     </div>
   
@@ -385,7 +385,7 @@ L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}p(x_i;\theta),\theta\in\Th
   
     <div class="waves-block waves-effect next">
       <a href="../hello-world/" id="post-next" class="post-nav-link">
-        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <div class="tips">下一篇(Next) <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
         <h4 class="title">Hello World</h4>
       </a>
     </div>
@@ -527,7 +527,7 @@ L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}p(x_i;\theta),\theta\in\Th
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://wgs666.github.io/2019/06/02/mle/&title=《最大似然估计(MLE)》 — 吴光生的主页&pic=https://wgs666.github.io/img/wgs.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://www.chinawgs.cn/2019/06/02/mle/&title=《最大似然估计(MLE)》 — 吴光生的主页&pic=https://www.chinawgs.cn/img/wgs.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -537,22 +537,22 @@ L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}p(x_i;\theta),\theta\in\Th
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://wgs666.github.io/2019/06/02/mle/&title=《最大似然估计(MLE)》 — 吴光生的主页&source=什么是最大似然估计？最大似然估计（Maximum Likelihood Estimation）是一种参数估计的方法。其核心思想是：找到参数$\theta$..." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://www.chinawgs.cn/2019/06/02/mle/&title=《最大似然估计(MLE)》 — 吴光生的主页&source=什么是最大似然估计？最大似然估计（Maximum Likelihood Estimation）是一种参数估计的方法。其核心思想是：找到参数$\theta$..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://wgs666.github.io/2019/06/02/mle/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://www.chinawgs.cn/2019/06/02/mle/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《最大似然估计(MLE)》 — 吴光生的主页&url=https://wgs666.github.io/2019/06/02/mle/&via=https://wgs666.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《最大似然估计(MLE)》 — 吴光生的主页&url=https://www.chinawgs.cn/2019/06/02/mle/&via=https://www.chinawgs.cn" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://wgs666.github.io/2019/06/02/mle/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://www.chinawgs.cn/2019/06/02/mle/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -563,7 +563,7 @@ L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}p(x_i;\theta),\theta\in\Th
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABvklEQVR42u3ay04DMRAEwPz/TweJExKwdI9jZ5HKpygv115anhk/HvF6fq6vr7+/89unyX++eOHi4i5zn5frGpT8tn3I6//BxcU9yc3DKw+ghJgbcHFx78m9psxiCxcX979z822S+MPFxb0/Nyl+8kNP/hgbazVcXNwF7qxh+trX2/u7uLi4L5pKtFG1EmfR7ri4uEe47TZ5ATNri0Qxh4uLu5nbNj2TFkleuuQDV1xc3JPcPETyqxWz9koRrLi4uJu5yZElx83GJEUU4uLi3oC7PjpdKZ9+eCRcXNzj3PY40pY3+ftR/wYXF3cbt/3B7LDSjldxcXHvwE0QbaHSxl/ROsHFxT3CbXFtYdOOZKLgw8XF3cbNI6yNvPUrGtEoBRcXdwO3xRW3veJhSVtE4eLi7ubOypsWPSulcHFx38ttG6ntFY26a5vPhHFxcbdx8zWLqllbZLgBLi7uMrcNlHakmpRSs09xcXF3c9vyJg+pvGGaHJJwcXHPc9vwyuntHbE/voOLi3sz7vrRp919KchwcXEPcmfHl9kEGBcX973cfAg6G6K0uBe0RXBxcRe4bcN01lqdXeHCxcU9zv0ApeoGHCyZdXcAAAAASUVORK5CYII=" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAAByUlEQVR42u3aS44DMQhF0dr/pqsXEJVzHxgnaV2PonzMqQyQAV8XXjdYr98ke14TS65cuW1uingKsw7/tCc3yJUr9zx3Hf71OzzA+rfcIFeu3G/m1kDrhChXrtz/xA2OJmGilCtX7jdwSfGTpi0SZbBWkytXboPLu5Rzr0f6u3Llyi1x73CRwmZ9DGpFlytX7hEuTyhpI4MMXWpx5cqVO81NU8yucWlaJl21jChXrtwSd31A6W+aDl2KlzDkypW7lZseWdLrFCRRBs0XuXLlHuF2LmN10h85SKE95cqVO8YlCSVtm6bjUp4E5cqVO83lKSltbdR+9SaRyZUr9zi3lox4EiwSn2o1uXLljnF5k6LW/uB/BI8oV67c89zO4Sae3uBCKH5iuXLlbuLWmqedAQkvlt40TOXKlTvM7Tc6eQnE35crV+5nubwZmhY2aZs1+FiuXLlbuXe4OtcmyDi2+H/IlSt3K7eTpHinolZc8WGMXLlyJ7g8efESqHaFCyU4uXLlHuR2GqbpkDUdpWzu78qVK3eMSwLwcWzQjpErV+4PcjuPgfaXK1fuQW7aJK2VMemxSa5cuZ/ipqmkcx0zDd/q78qVK7fC/QODrjPSO0oI/QAAAABJRU5ErkJggg==" alt="微信分享二维码">
 </div>
 
 

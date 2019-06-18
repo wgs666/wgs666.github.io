@@ -5,9 +5,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="https://wgs666.github.io/"/>
-  <updated>2019-06-11T13:52:49.530Z</updated>
-  <id>https://wgs666.github.io/</id>
+  <link href="https://www.chinawgs.cn/"/>
+  <updated>2019-06-18T07:39:32.417Z</updated>
+  <id>https://www.chinawgs.cn/</id>
   
   <author>
     <name>Guangsheng Wu&lt;br&gt;吴光生</name>
@@ -17,9 +17,33 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>贝叶斯估计</title>
+    <link href="https://www.chinawgs.cn/2019/06/18/be/"/>
+    <id>https://www.chinawgs.cn/2019/06/18/be/</id>
+    <published>2019-06-18T07:35:51.000Z</published>
+    <updated>2019-06-18T07:39:32.417Z</updated>
+    
+    <content type="html"><![CDATA[<p>除了样本的信息，还有参数的先验信息。</p><a id="more"></a><p>例1. 抛硬币试验。</p><p>设正面朝上的概率为$\theta$ ,假设未知参数$\theta$的先验概率服从$\beta$分布，记为$\theta \sim Be(\alpha, \beta)$，其概率密度是</p><script type="math/tex; mode=display">p(\theta)=\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}\theta^{\alpha-1}(1-\theta)^{\beta-1}</script><p>不妨用$x_i=1$表示正面朝上，$x_i=0$表示反面朝上。<br>抛硬币服从二项分布$X \sim b(1,\theta)$，即$X$的分布律为：</p><script type="math/tex; mode=display">P\{X=x\}=p(x;\theta)=\theta^x (1-\theta)^{1-x},    x=0,1</script><p>因为此时的$\theta$为随机变量，所以$p(x;\theta)$应该看成给定$\theta$时$X$的条件概率，改用$p(x|\theta)$来表示，即$X$的分布律为：</p><script type="math/tex; mode=display">P\{X=x\}=p(x|\theta)=\theta^x (1-\theta)^{1-x},    x=0,1</script><p>已知先验信息$p(\theta)$，样本$X_1, X_2, \cdots, X_n$取到观察值$x_1, x_2, \cdots, x_n$，</p><p>参数$\theta$的后验概率为：</p><script type="math/tex; mode=display">\begin{align*}p(\theta|x_1,x_2,\cdots,x_n)&=\frac{p(\theta,x_1,x_2,\cdots,x_n)}{p(x_1,x_2,\cdots,x_n)}\\ & \color{red} 注：联合密度除以边际密度\\&=\frac{p(\theta)p(x_1|\theta)p(x_2|\theta)\cdots p(x_n|\theta)}{\int p(\theta,x_1,x_2,\cdots,x_n)d\theta}\\& \color{red} 注：分母积分后与\theta无关\\&= C \theta^{\alpha-1}(1-\theta)^{\beta-1}\Pi_{i=1}^n \theta^{x_i}(1-\theta)^{1-x_i}\\& \color{red} 注：C是一个与\theta无关的常数\\&=C\theta^{\alpha -1 + \Sigma_{i=1}^n x_i}(1-\theta)^{\beta-1+n- \Sigma_{i=1}^n x_i}\end{align*}</script><p>令$L(\theta)=p(\theta|x_1,x_2, \cdots, x_n)$</p><script type="math/tex; mode=display">\begin{align*}\ln L(\theta) &= \ln C +\ln[\theta^{\alpha -1 + \Sigma_{i=1}^n x_i}(1-\theta)^{\beta-1+n- \Sigma_{i=1}^n x_i}]\\&= \ln C +(\alpha-1+\sum_{i=1}^n x_i)\ln\theta + (\beta-1+n-\sum_{i=1}^n x_i)\ln(1-\theta) \end{align*}</script><p>令$\frac{\partial \ln L(\theta)}{\partial \theta} =0$</p><script type="math/tex; mode=display">\frac{\alpha-1+\sum_{i=1}^n x_i}{\theta}-\frac{\beta-1+n-\sum_{i=1}^n x_i}{1-\theta}=0\\\alpha-1+\sum_{i=1}^n x_i=\theta(n+\alpha+\beta-2)\\\hat \theta = \frac{\alpha-1+\sum_{i=1}^n x_i}{n+\alpha+\beta-2}</script><p>当$n \to \infty$时，$\hat \theta \to \frac{\sum_{i=1}^n x_i}{n} = \overline x$，此时正好是最大似然估计。</p><p>当$n=1$时，只有一个样本（$x_i=0或1$），</p><p>$\hat \theta=\frac{\alpha-1}{\alpha+\beta-1}$,  ($x_i=0$)；</p><p>$\hat \theta=\frac{\alpha}{\alpha+\beta-1}$,  ($x_i=1$)。</p><p><br></p><p>例2. 推导下列正态分布均值$\mu$的贝叶斯估计。</p><p>样本数据$x_1,x_2,\cdots,x_n$来自正态分布$N(\mu,\sigma^2)$，其中$\mu$未知，$\sigma$已知。假设$\mu$的先验分布为正态分布$\mu \sim N(0, \tau^2)$ ，根据样本$x_1,x_2,\cdots,x_n$写出$\mu$的贝叶斯估计。</p><script type="math/tex; mode=display">\begin{align*}p(\mu|x_1,x_2,\cdots,x_n)&=\frac{p(\mu,x_1,x_2,\cdots,x_n)}{p(x_1,x_2,\cdots,x_n)}\\&= \frac{p(\mu)p(x_1,x_2,\cdots,x_n|\mu)}{p(x_1,x_2,\cdots,x_n)}\\&= \frac{p(\mu)p(x_1|\mu)p(x_2|\mu)\cdots p(x_n|\mu)}{\int p(\mu,x_1,x_2,\cdots,x_n) \mathrm{d} \mu}\\&= \frac{ \frac{1}{\sqrt{2\pi}\tau}\exp(-\frac{\mu^2}{2\tau^2})\Pi_{i=1}^n\frac{1}{\sqrt{2\pi}\sigma}\exp(-\frac{(x_i-\mu)^2}{2\sigma^2}) } {\int p(\mu,x_1,x_2,\cdots,x_n) \mathrm{d} \mu} \\&= C \exp(-\frac{\mu^2}{2\tau^2}) \Pi_{i=1}^n \exp(-\frac{(x_i-\mu)^2}{2\sigma^2})\\& \color{red} 注：C是一个与\mu无关的常数\\\end{align*}</script><p> 令$L(\mu)=p(\mu|x_1,x_2,\cdots,x_n)$</p><script type="math/tex; mode=display">\begin{align*}\ln L(\mu)=\ln C - \frac{\mu^2}{2\tau^2}-\sum_{i=1}^n \frac{(x_i-\mu)^2}{2\sigma^2}\end{align*}</script><p>令$ \frac{\partial \ln L(\mu)}{\partial \mu}=0$</p><script type="math/tex; mode=display">-\frac{\mu}{\tau^2}+\sum_{i=1}^n \frac{(x_i-\mu)}{\sigma^2}=0\\\tau^2 \sum_{i=1}^n (x_i-\mu)=\sigma^2 \mu\\\tau^2 \sum_{i=1}^n x_i = (n \tau^2 + \sigma^2)\mu\\\hat \mu = \frac{\sum_{i=1}^n x_i}{n+ \frac{\sigma^2}{\tau^2}}</script><p>当$n \to \infty$时，$\hat \theta \to \frac{\sum_{i=1}^n x_i}{n} = \overline x$，此时正好是最大似然估计。</p><p><br></p><p>总结：</p><p>问题：已知样本集$D=\{x_1,x_2, \cdots, x_n\}$服从某个概率分布，但是参数$\theta$未知。</p><p>最大似然估计</p><p>（1）参数$\theta$是一个未知的定值</p><p>（2）目标：找到一个参数$\theta$，使得样本集$D$发生的概率最大</p><script type="math/tex; mode=display">\max \quad p(D|\theta)</script><p>贝叶斯估计</p><p>（1）参数$\theta$是未知的随机变量，本身服从一定的概率分布（先验分布）</p><p>（2）目标：样本集$D$发生的情况下，哪一个$\theta$发生的概率最大</p><script type="math/tex; mode=display">\max \quad p(\theta|D)</script><p>贝叶斯估计求解的一般步骤：</p><p>（1）写出$L(\theta)=p(\theta|D)=\frac{p(D|\theta)p(\theta)}{p(D)}$</p><p>（2）取对数    $\ln L(\theta)$</p><p>（3）求偏导    $\frac{\partial \ln L(\theta)}{\partial \theta}$</p><p>（4）解方程（组）  $\frac{\partial \ln L(\theta)}{\partial \theta}=0$，求解出$\hat \theta$ </p><p><br></p><p><strong>参考文献：</strong></p><p>[1] 邰淑彩, 孙韫玉, 何娟娟.  应用数理统计（第二版）[M].  武汉: 武汉大学出版社, 2005.</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;除了样本的信息，还有参数的先验信息。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="学习笔记" scheme="https://www.chinawgs.cn/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="概率统计" scheme="https://www.chinawgs.cn/tags/%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1/"/>
+    
+      <category term="机器学习" scheme="https://www.chinawgs.cn/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
     <title>贝叶斯公式</title>
-    <link href="https://wgs666.github.io/2019/06/11/bayes/"/>
-    <id>https://wgs666.github.io/2019/06/11/bayes/</id>
+    <link href="https://www.chinawgs.cn/2019/06/11/bayes/"/>
+    <id>https://www.chinawgs.cn/2019/06/11/bayes/</id>
     <published>2019-06-11T06:47:06.000Z</published>
     <updated>2019-06-11T13:52:49.530Z</updated>
     
@@ -33,17 +57,17 @@ P(B|A)=\frac{P(AB)}{P(A)}&lt;/script&gt;&lt;p&gt;为在事件$A$发生的条件�
     
     </summary>
     
-      <category term="学习笔记" scheme="https://wgs666.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+      <category term="学习笔记" scheme="https://www.chinawgs.cn/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="概率统计" scheme="https://wgs666.github.io/tags/%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1/"/>
+      <category term="概率统计" scheme="https://www.chinawgs.cn/tags/%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1/"/>
     
   </entry>
   
   <entry>
     <title>主成分分析（PCA）</title>
-    <link href="https://wgs666.github.io/2019/06/04/pca/"/>
-    <id>https://wgs666.github.io/2019/06/04/pca/</id>
+    <link href="https://www.chinawgs.cn/2019/06/04/pca/"/>
+    <id>https://www.chinawgs.cn/2019/06/04/pca/</id>
     <published>2019-06-04T15:10:06.000Z</published>
     <updated>2019-06-04T16:01:38.304Z</updated>
     
@@ -57,49 +81,21 @@ P(B|A)=\frac{P(AB)}{P(A)}&lt;/script&gt;&lt;p&gt;为在事件$A$发生的条件�
     
     </summary>
     
-      <category term="学习笔记" scheme="https://wgs666.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+      <category term="学习笔记" scheme="https://www.chinawgs.cn/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="机器学习" scheme="https://wgs666.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>first-blog</title>
-    <link href="https://wgs666.github.io/2019/06/03/first-blog/"/>
-    <id>https://wgs666.github.io/2019/06/03/first-blog/</id>
-    <published>2019-06-03T03:17:57.000Z</published>
-    <updated>2019-06-03T05:54:01.201Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="/assets/first-blog/8339340_144203764154_2.jpg" alt="img" title>                </div>                <div class="image-caption">img</div>            </figure><p><a href="/assets/first-blog/244.pdf">xiazai</a></p><p>仅用于测试一下博客功能</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;figure class=&quot;image-bubble&quot;&gt;
-                &lt;div class=&quot;img-lightbox&quot;&gt;
-                    &lt;div class=&quot;overlay&quot;&gt;&lt;/div&gt;
-                   
-      
-    
-    </summary>
-    
-      <category term="测试" scheme="https://wgs666.github.io/categories/%E6%B5%8B%E8%AF%95/"/>
-    
-    
-      <category term="深度学习" scheme="https://wgs666.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="机器学习" scheme="https://www.chinawgs.cn/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
   <entry>
     <title>最大似然估计(MLE)</title>
-    <link href="https://wgs666.github.io/2019/06/02/mle/"/>
-    <id>https://wgs666.github.io/2019/06/02/mle/</id>
+    <link href="https://www.chinawgs.cn/2019/06/02/mle/"/>
+    <id>https://www.chinawgs.cn/2019/06/02/mle/</id>
     <published>2019-06-02T10:23:12.000Z</published>
-    <updated>2019-06-04T15:45:20.366Z</updated>
+    <updated>2019-06-14T08:48:13.912Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="什么是最大似然估计？"><a href="#什么是最大似然估计？" class="headerlink" title="什么是最大似然估计？"></a>什么是最大似然估计？</h2><p>最大似然估计（Maximum Likelihood Estimation）是一种参数估计的方法。其核心思想是：找到参数$\theta$的一个估计值，使得当前样本出现的可能性最大。</p> <a id="more"></a><p>设总体$X$属于离散型，其分布律$P\{ X=x\}=p(x;\theta), \theta \in \Theta$的形式为已知，$\theta$为待估参数，$\Theta$是$\theta$可能取值的范围。设$X_1,X_2,\cdots,X_n$是来自$X$的样本，则$X_1,X_2,\cdots,X_n$的联合分布律为：</p><script type="math/tex; mode=display">\prod_{i=1}^{n}p(x_i;\theta)</script><p>样本$X_1,X_2,\cdots,X_n$取到观察值$x_1,x_2,\cdots,x_n$的概率，即事件$\{X_1=x_1,X_2=x_2,\cdots,X_n=x_n\}$发生的概率为：</p><script type="math/tex; mode=display">L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}p(x_i;\theta),\theta\in\Theta</script><p>这一概率随$\theta$的取值而变化，它是$\theta$的函数，$L(\theta)$称为样本的<strong>似然函数</strong>。</p><p>最大似然估计法，就是固定样本观察值$x_1,x_2,\cdots,x_n$，在参数$\theta$取值的可能范围$\Theta$内挑选出一个$\hat\theta$，使得似然函数$L(x_1,x_2,\cdots,x_n;\theta)$达到最大。即：</p><script type="math/tex; mode=display">\hat\theta=\mathop{\arg\max}_{\theta\in\Theta}L(x_1,x_2,\cdots,x_n;\theta)</script><p>这样得到的$\hat\theta$与样本值$x_1,x_2,\cdots,x_n$有关，常记为$\hat\theta(x_1,x_2,\cdots,x_n)$，称为参数$\theta$的<strong>最大似然估计值</strong>，而相应的统计量$\hat\theta(X_1,X_2,\cdots,X_n)$称为参数$\theta$的<strong>最大似然估计量</strong>。</p><h2 id="为什么要有参数估计？"><a href="#为什么要有参数估计？" class="headerlink" title="为什么要有参数估计？"></a>为什么要有参数估计？</h2><p>当模型已定，参数未知时。</p><p>例如，假设我们知道全国人民的身高服从正态分布，但不知道均值和方差。这时可以通过采样，观察其结果，然后再用样本数据的结果推出正态分布的均值与方差的最大概率值，这样就可以知道全国人民的身高分布的函数。</p><h2 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h2><p><span>1. </span> 抛硬币。现有一个正反面不是很均匀的硬币，如果正面朝上记为H，反面朝上记为T，抛10次的结果如下：</p><p>   T, H, T, T, H, T, T, T, H, T</p><p>   求这个硬币正面朝上的概率有多大？</p><p>   很显然，这个概率是0.3。现在用MLE的思想来求解它。</p><p>   设$x_1,x_2,\cdots,x_n$是相应于样本$X_1,X_2,\cdots,X_n$的一个样本值。</p><p>   不妨用$x_i=1$表示正面朝上，$x_i=0$表示反面朝上</p><p>   设正面朝上的概率为$\theta$，抛硬币服从二项分布$X \sim b(1,\theta)$，$X$的分布律为：</p><script type="math/tex; mode=display">   P\{X=x\}=p(x;\theta)=\theta^x (1-\theta)^{1-x},    x=0,1</script><p>   似然函数为：</p><script type="math/tex; mode=display">   L(\theta)=\prod_{i=1}^{n}p(x_i;\theta)=\prod_{i=1}^{n}\theta^{x_i}(1-\theta)^{1-x_i}</script><p>   取对数后，为</p><script type="math/tex; mode=display">\begin{align*}   ln L(\theta)&=ln\prod_{i=1}^{n}\theta^{x_i}(1-\theta)^{1-x_i}\\   &=\sum_{i=1}^{n}ln[\theta^{x_i}(1-\theta)^{1-x_i}]\\   &=\sum_{i=1}^{n}[ln\theta^{x_i}+ln(1-\theta)^{1-x_i}]\\   &=\sum_{i=1}^{n}[x_iln\theta+(1-x_i)ln(1-\theta)]\\   &=\sum_{i=1}^{n}x_iln\theta+(n-\sum_{i=1}^{n}x_i)ln(1-\theta)   \end{align*}</script><p>   求导：</p><script type="math/tex; mode=display">   \frac{\partial ln L(\theta)}{\partial \theta}=\frac{\sum_{i=1}^{n} x_i}{\theta}-\frac{n-\sum_{i=1}^{n} x_i}{1-\theta}</script><p>   令$\frac{\partial ln L(\theta)}{\partial \theta}=0$，可得：</p><script type="math/tex; mode=display">\hat \theta = \frac{\sum_{i=1}^{n} x_i}{n}</script><p>   可知概率$\hat \theta=0.3$</p><p><span>2. </span> 设$X \sim N(\mu, \sigma^2)$, $\mu, \sigma^2$为未知参数，$x_1,x_2,\cdots,x_n$是来自$X$的一个样本值。求$\mu, \sigma^2$的最大似然估计量。</p><p>   解：$X$的概率密度为：</p><script type="math/tex; mode=display">   f(x;\mu,\sigma^2)=\frac{1}{\sqrt{2\pi}\sigma}exp[-\frac{1}{2\sigma^2}(x-\mu)^2]</script><p>   似然函数为：</p><script type="math/tex; mode=display">   \begin{align*}   L(\mu,\sigma^2)&=\prod_{i=1}^n \frac{1}{\sqrt{2\pi}\sigma}exp[-\frac{1}{2\sigma^2}(x_i-\mu)^2]\\   &=(\frac{1}{\sqrt{2\pi}\sigma})^n exp[-\frac{1}{2\sigma^2}\sum_{i=1}^n (x_i-\mu)^2]\\   &=(\frac{1}{2\pi \sigma^2})^{\frac{n}{2}} exp[-\frac{1}{2\sigma^2}\sum_{i=1}^n (x_i-\mu)^2]\\   &=(2\pi)^{-\frac{n}{2}}(\sigma^2)^{-\frac{n}{2}}exp[-\frac{1}{2\sigma^2}\sum_{i=1}^n (x_i-\mu)^2]   \end{align*}</script><p>   它的对数：</p><script type="math/tex; mode=display">   ln L(\mu,\sigma^2)=-\frac{n}{2}ln(2\pi)-\frac{n}{2}ln(\sigma^2)-\frac{1}{2\sigma^2}\sum_{i=1}^n (x_i-\mu)^2</script><p>   令</p><script type="math/tex; mode=display">   \left\{       \begin{array}{l}           \frac{\partial ln L(\mu,\sigma^2)}{\partial \mu}=\frac{1}{\sigma^2}\Sigma_{i=1}^n(x_i-\mu)=0\\           \frac{\partial ln L(\mu,\sigma^2)}{\partial \sigma^2}= -\frac{n}{2\sigma^2} + \frac{1}{2 \sigma^4}\sum_{i=1}^n (x_i-\mu)^2=0       \end{array}   \right.</script><p>   联合求解，得到参数$\mu$和$\sigma^2$的最大似然估计值分别为：</p><script type="math/tex; mode=display">   \left\{       \begin{array}{l}           \hat \mu = \overline x = \frac{1}{n} \sum_{i=1}^n x_i\\           \hat \sigma^2 = \frac{1}{n} \sum_{i=1}^n (x_i-\overline x)^2       \end{array}   \right.</script><p>   相应的最大似然估计量分别为：    $\hat \mu=\bar X$,       $\hat \sigma^2=\frac{1}{n}\sum_{i=1}^n (X_i- \overline X)$</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>求最大似然估计值的一般步骤：</p><p>（1）写出总体$X$的分布律$p(x; \theta)$（$X$为离散型随机变量）或者概率密度$f(x; \theta)$（$X$为连续型随机变量）</p><p>（2）写出样本的似然函数$L(\theta)$ </p><p>离散型：$L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}p(x_i;\theta)$<br>连续型：$L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}f(x_i;\theta)$</p><p>（3）对似然函数取对数     $ln L(\theta)$</p><p>（4）求偏导     $\frac{\partial ln L(\theta)}{\partial \theta}$</p><p>（5）解方程（组） $\frac{\partial ln L(\theta)}{\partial \theta}=0$，得到参数$\theta$的最大似然估计值$\hat \theta$</p><p>注：参数可能是一个（如例1，只有一个参数$\theta$），也可能是一组（如例2，有两个参数：$\mu, \sigma^2$），一组参数时，求解方法类似。</p><p><br></p><p><strong>参考文献：</strong></p><p>[1] 盛骤, 谢式千, 潘承毅.  概率论与数理统计（第四版）[M].  北京: 高等教育出版社, 2008.</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="什么是最大似然估计？"><a href="#什么是最大似然估计？" class="headerlink" title="什么是最大似然估计？"></a>什么是最大似然估计？</h2><p>最大似然估计（Maximum Likelihood Estimation）是一种参数估计的方法。其核心思想是：找到参数$\theta$的一个估计值，使得当前样本出现的可能性最大。</p> <a id="more"></a><p>设总体$X$属于离散型，其分布律$P\{ X=x\}=p(x;\theta), \theta \in \Theta$的形式为已知，$\theta$为待估参数，$\Theta$是$\theta$可能取值的范围。设$X_1,X_2,\cdots,X_n$是来自$X$的样本，则$X_1,X_2,\cdots,X_n$的联合分布律为：</p><script type="math/tex; mode=display">\prod_{i=1}^{n}p(x_i;\theta)</script><p>样本$X_1,X_2,\cdots,X_n$取到观察值$x_1,x_2,\cdots,x_n$的概率，即事件$\{X_1=x_1,X_2=x_2,\cdots,X_n=x_n\}$发生的概率为：</p><script type="math/tex; mode=display">L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}p(x_i;\theta),\theta\in\Theta</script><p>这一概率随$\theta$的取值而变化，它是$\theta$的函数，$L(\theta)$称为样本的<strong>似然函数</strong>。</p><p>最大似然估计法，就是固定样本观察值$x_1,x_2,\cdots,x_n$，在参数$\theta$取值的可能范围$\Theta$内挑选出一个$\hat\theta$，使得似然函数$L(x_1,x_2,\cdots,x_n;\theta)$达到最大。即：</p><script type="math/tex; mode=display">\hat\theta=\mathop{\arg\max}_{\theta\in\Theta}L(x_1,x_2,\cdots,x_n;\theta)</script><p>这样得到的$\hat\theta$与样本值$x_1,x_2,\cdots,x_n$有关，常记为$\hat\theta(x_1,x_2,\cdots,x_n)$，称为参数$\theta$的<strong>最大似然估计值</strong>，而相应的统计量$\hat\theta(X_1,X_2,\cdots,X_n)$称为参数$\theta$的<strong>最大似然估计量</strong>。</p><h2 id="为什么要有参数估计？"><a href="#为什么要有参数估计？" class="headerlink" title="为什么要有参数估计？"></a>为什么要有参数估计？</h2><p>当模型已定，参数未知时。</p><p>例如，假设我们知道全国人民的身高服从正态分布，但不知道均值和方差。这时可以通过采样，观察其结果，然后再用样本数据的结果推出正态分布的均值与方差的最大概率值，这样就可以知道全国人民的身高分布的函数。</p><h2 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h2><p><span>1. </span> 抛硬币。现有一个正反面不是很均匀的硬币，如果正面朝上记为H，反面朝上记为T，抛10次的结果如下：</p><p>   T, H, T, T, H, T, T, T, H, T</p><p>   求这个硬币正面朝上的概率有多大？</p><p>   很显然，这个概率是0.3。现在用MLE的思想来求解它。</p><p>   设$x_1,x_2,\cdots,x_n$是相应于样本$X_1,X_2,\cdots,X_n$的一个样本值。</p><p>   不妨用$x_i=1$表示正面朝上，$x_i=0$表示反面朝上</p><p>   设正面朝上的概率为$\theta$，抛硬币服从二项分布$X \sim b(1,\theta)$，即$X$的分布律为：</p><script type="math/tex; mode=display">P\{X=x\}=p(x;\theta)=\theta^x (1-\theta)^{1-x},    x=0,1</script><p>   似然函数为：</p><script type="math/tex; mode=display">   L(\theta)=\prod_{i=1}^{n}p(x_i;\theta)=\prod_{i=1}^{n}\theta^{x_i}(1-\theta)^{1-x_i}</script><p>   取对数后，为</p><script type="math/tex; mode=display">\begin{align*}   \ln L(\theta)&=\ln \prod_{i=1}^{n}\theta^{x_i}(1-\theta)^{1-x_i}\\   &=\sum_{i=1}^{n}\ln[\theta^{x_i}(1-\theta)^{1-x_i}]\\   &=\sum_{i=1}^{n}[\ln \theta^{x_i}+\ln(1-\theta)^{1-x_i}]\\   &=\sum_{i=1}^{n}[x_i \ln \theta+(1-x_i)\ln(1-\theta)]\\   &=\sum_{i=1}^{n}x_i \ln \theta+(n-\sum_{i=1}^{n}x_i)\ln(1-\theta)   \end{align*}</script><p>   求导：</p><script type="math/tex; mode=display">\frac{\partial \ln L(\theta)}{\partial \theta}=\frac{\sum_{i=1}^{n} x_i}{\theta}-\frac{n-\sum_{i=1}^{n} x_i}{1-\theta}</script><p>   令$\frac{\partial \ln L(\theta)}{\partial \theta}=0$，可得：</p><script type="math/tex; mode=display">\hat \theta = \frac{\sum_{i=1}^{n} x_i}{n}</script><p>   可知概率$\hat \theta=0.3$</p><p><span>2. </span> 设$X \sim N(\mu, \sigma^2)$, $\mu, \sigma^2$为未知参数，$x_1,x_2,\cdots,x_n$是来自$X$的一个样本值。求$\mu, \sigma^2$的最大似然估计量。</p><p>   解：$X$的概率密度为：</p><script type="math/tex; mode=display">f(x;\mu,\sigma^2)=\frac{1}{\sqrt{2\pi}\sigma}exp[-\frac{1}{2\sigma^2}(x-\mu)^2]</script><p>   似然函数为：</p><script type="math/tex; mode=display">   \begin{align*}   L(\mu,\sigma^2)&=\prod_{i=1}^n \frac{1}{\sqrt{2\pi}\sigma}exp[-\frac{1}{2\sigma^2}(x_i-\mu)^2]\\   &=(\frac{1}{\sqrt{2\pi}\sigma})^n exp[-\frac{1}{2\sigma^2}\sum_{i=1}^n (x_i-\mu)^2]\\   &=(\frac{1}{2\pi \sigma^2})^{\frac{n}{2}} exp[-\frac{1}{2\sigma^2}\sum_{i=1}^n (x_i-\mu)^2]\\   &=(2\pi)^{-\frac{n}{2}}(\sigma^2)^{-\frac{n}{2}}exp[-\frac{1}{2\sigma^2}\sum_{i=1}^n (x_i-\mu)^2]   \end{align*}</script><p>   它的对数：</p><script type="math/tex; mode=display">\ln L(\mu,\sigma^2)=-\frac{n}{2}\ln(2\pi)-\frac{n}{2}\ln(\sigma^2)-\frac{1}{2\sigma^2}\sum_{i=1}^n (x_i-\mu)^2</script><p>   令</p><script type="math/tex; mode=display">\left\{       \begin{array}{l}           \frac{\partial \ln L(\mu,\sigma^2)}{\partial \mu}=\frac{1}{\sigma^2}\Sigma_{i=1}^n(x_i-\mu)=0\\           \frac{\partial \ln L(\mu,\sigma^2)}{\partial \sigma^2}= -\frac{n}{2\sigma^2} + \frac{1}{2 \sigma^4}\sum_{i=1}^n (x_i-\mu)^2=0       \end{array}   \right.</script><p>   联合求解，得到参数$\mu$和$\sigma^2$的最大似然估计值分别为：</p><script type="math/tex; mode=display">   \left\{       \begin{array}{l}           \hat \mu = \overline x = \frac{1}{n} \sum_{i=1}^n x_i\\           \hat \sigma^2 = \frac{1}{n} \sum_{i=1}^n (x_i-\overline x)^2       \end{array}   \right.</script><p>   相应的最大似然估计量分别为：    $\hat \mu=\bar X$,       $\hat \sigma^2=\frac{1}{n}\sum_{i=1}^n (X_i- \overline X)$</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>求最大似然估计值的一般步骤：</p><p>（1）写出总体$X$的分布律$p(x; \theta)$（$X$为离散型随机变量）或者概率密度$f(x; \theta)$（$X$为连续型随机变量）</p><p>（2）写出样本的似然函数$L(\theta)$ </p><p>离散型：$L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}p(x_i;\theta)$<br>连续型：$L(\theta)=L(x_1,x_2,\cdots,x_n;\theta)=\prod_{i=1}^{n}f(x_i;\theta)$</p><p>（3）对似然函数取对数     $\ln L(\theta)$</p><p>（4）求偏导     $\frac{\partial \ln L(\theta)}{\partial \theta}$</p><p>（5）解方程（组） $\frac{\partial \ln L(\theta)}{\partial \theta}=0$，得到参数$\theta$的最大似然估计值$\hat \theta$</p><p>注：参数可能是一个（如例1，只有一个参数$\theta$），也可能是一组（如例2，有两个参数：$\mu, \sigma^2$），一组参数时，求解方法类似。</p><p><br></p><p><strong>参考文献：</strong></p><p>[1] 盛骤, 谢式千, 潘承毅.  概率论与数理统计（第四版）[M].  北京: 高等教育出版社, 2008.</p>]]></content>
     
     <summary type="html">
     
@@ -107,19 +103,19 @@ P(B|A)=\frac{P(AB)}{P(A)}&lt;/script&gt;&lt;p&gt;为在事件$A$发生的条件�
     
     </summary>
     
-      <category term="学习笔记" scheme="https://wgs666.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+      <category term="学习笔记" scheme="https://www.chinawgs.cn/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="概率统计" scheme="https://wgs666.github.io/tags/%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1/"/>
+      <category term="概率统计" scheme="https://www.chinawgs.cn/tags/%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1/"/>
     
-      <category term="机器学习" scheme="https://wgs666.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+      <category term="机器学习" scheme="https://www.chinawgs.cn/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="https://wgs666.github.io/2019/06/02/hello-world/"/>
-    <id>https://wgs666.github.io/2019/06/02/hello-world/</id>
+    <link href="https://www.chinawgs.cn/2019/06/02/hello-world/"/>
+    <id>https://www.chinawgs.cn/2019/06/02/hello-world/</id>
     <published>2019-06-02T05:20:10.000Z</published>
     <updated>2019-06-03T05:52:32.144Z</updated>
     
@@ -131,10 +127,10 @@ P(B|A)=\frac{P(AB)}{P(A)}&lt;/script&gt;&lt;p&gt;为在事件$A$发生的条件�
     
     </summary>
     
-      <category term="测试" scheme="https://wgs666.github.io/categories/%E6%B5%8B%E8%AF%95/"/>
+      <category term="测试" scheme="https://www.chinawgs.cn/categories/%E6%B5%8B%E8%AF%95/"/>
     
     
-      <category term="杂谈" scheme="https://wgs666.github.io/tags/%E6%9D%82%E8%B0%88/"/>
+      <category term="杂谈" scheme="https://www.chinawgs.cn/tags/%E6%9D%82%E8%B0%88/"/>
     
   </entry>
   
