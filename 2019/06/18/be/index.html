@@ -29,7 +29,7 @@
 <meta property="og:site_name" content="吴光生的主页">
 <meta property="og:description" content="除了样本的信息，还有参数的先验信息。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-18T07:49:53.716Z">
+<meta property="og:updated_time" content="2019-06-18T10:10:30.419Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="贝叶斯估计">
 <meta name="twitter:description" content="除了样本的信息，还有参数的先验信息。">
@@ -231,7 +231,7 @@ p(\theta|x_1,x_2,\cdots,x_n)&=\frac{p(\theta,x_1,x_2,\cdots,x_n)}{p(x_1,x_2,\cdo
 <script type="math/tex; mode=display">
 \frac{\alpha-1+\sum_{i=1}^n x_i}{\theta}-\frac{\beta-1+n-\sum_{i=1}^n x_i}{1-\theta}=0\\
 \alpha-1+\sum_{i=1}^n x_i=\theta(n+\alpha+\beta-2)\\
-\hat \theta = \frac{\alpha-1+\sum_{i=1}^n x_i}{n+\alpha+\beta-2}</script><p>当$n \to \infty$时，$\hat \theta \to \frac{\sum_{i=1}^n x_i}{n} = \overline x$，此时正好是最大似然估计。</p>
+\hat \theta = \frac{\alpha-1+\sum_{i=1}^n x_i}{n+\alpha+\beta-2}</script><p>当$n \to \infty$时，$\hat \theta \to \frac{1}{n} \sum_{i=1}^n x_i= \overline x$，此时正好是最大似然估计。</p>
 <p>当$n=1$时，只有一个样本（$x_i=0或1$），</p>
 <p>$\hat \theta=\frac{\alpha-1}{\alpha+\beta-1}$,  ($x_i=0$)；</p>
 <p>$\hat \theta=\frac{\alpha}{\alpha+\beta-1}$,  ($x_i=1$)。</p>
@@ -255,7 +255,7 @@ p(\mu|x_1,x_2,\cdots,x_n)&=\frac{p(\mu,x_1,x_2,\cdots,x_n)}{p(x_1,x_2,\cdots,x_n
 -\frac{\mu}{\tau^2}+\sum_{i=1}^n \frac{(x_i-\mu)}{\sigma^2}=0\\
 \tau^2 \sum_{i=1}^n (x_i-\mu)=\sigma^2 \mu\\
 \tau^2 \sum_{i=1}^n x_i = (n \tau^2 + \sigma^2)\mu\\
-\hat \mu = \frac{\sum_{i=1}^n x_i}{n+ \frac{\sigma^2}{\tau^2}}</script><p>当$n \to \infty$时，$\hat \theta \to \frac{\sum_{i=1}^n x_i}{n} = \overline x$，此时正好是最大似然估计。</p>
+\hat \mu = \frac{\sum_{i=1}^n x_i}{n+ \frac{\sigma^2}{\tau^2}}</script><p>当$n \to \infty$时，$\hat \theta \to \frac{1}{n}\sum_{i=1}^n x_i = \overline x$，此时正好是最大似然估计。</p>
 <p><br></p>
 <p>总结：</p>
 <p>问题：已知样本集$D=\{x_1,x_2, \cdots, x_n\}$服从某个概率分布，但是参数$\theta$未知。</p>
@@ -283,7 +283,7 @@ p(\mu|x_1,x_2,\cdots,x_n)&=\frac{p(\mu,x_1,x_2,\cdots,x_n)}{p(x_1,x_2,\cdots,x_n
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-06-18T07:49:53.716Z" itemprop="dateUpdated">2019-06-18 15:49:53</time>
+    最后更新时间：<time datetime="2019-06-18T10:10:30.419Z" itemprop="dateUpdated">2019-06-18 18:10:30</time>
 </span><br>
 
 
