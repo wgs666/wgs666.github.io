@@ -8,13 +8,30 @@
     
 
 
+<!-- Baidu Push -->
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<!-- End Baidu Push -->
+
 
     <meta charset="utf-8">
     
     
     
     
-    <title>主成分分析（PCA） | 吴光生的主页</title>
+    <title>主成分分析（PCA） | Guangsheng Wu | Homepage</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
@@ -26,7 +43,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="主成分分析（PCA）">
 <meta property="og:url" content="https://www.chinawgs.cn/2019/06/04/pca/index.html">
-<meta property="og:site_name" content="吴光生的主页">
+<meta property="og:site_name" content="Guangsheng Wu | Homepage">
 <meta property="og:description" content="1. 主成分分析优点：降低数据的复杂性，识别最重要的多个特征。 缺点：不一定需要，且可能损失有用信息。 使用数据类型：数值型数据">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.chinawgs.cn/assets/pca/Figure_1.png">
@@ -36,7 +53,7 @@
 <meta name="twitter:description" content="1. 主成分分析优点：降低数据的复杂性，识别最重要的多个特征。 缺点：不一定需要，且可能损失有用信息。 使用数据类型：数值型数据">
 <meta name="twitter:image" content="https://www.chinawgs.cn/assets/pca/Figure_1.png">
     
-        <link rel="alternate" type="application/atom+xml" title="吴光生的主页" href="../../../../atom.xml">
+        <link rel="alternate" type="application/atom+xml" title="Guangsheng Wu | Homepage" href="../../../../atom.xml">
     
     <link rel="shortcut icon" href="../../../../img/favicon.ico">
     <link rel="stylesheet" href="../../../../css/style.css?v=1.7.2">
@@ -419,7 +436,7 @@ plt.show()
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://www.chinawgs.cn/2019/06/04/pca/&title=《主成分分析（PCA）》 — 吴光生的主页&pic=https://www.chinawgs.cn/img/wgs.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://www.chinawgs.cn/2019/06/04/pca/&title=《主成分分析（PCA）》 — Guangsheng Wu | Homepage&pic=https://www.chinawgs.cn/img/wgs.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -429,7 +446,7 @@ plt.show()
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://www.chinawgs.cn/2019/06/04/pca/&title=《主成分分析（PCA）》 — 吴光生的主页&source=1. 主成分分析优点：降低数据的复杂性，识别最重要的多个特征。
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://www.chinawgs.cn/2019/06/04/pca/&title=《主成分分析（PCA）》 — Guangsheng Wu | Homepage&source=1. 主成分分析优点：降低数据的复杂性，识别最重要的多个特征。
 缺点：不一定需要，且可能损失有用信息。
 使用数据类型：数值型数据" data-title=" QQ">
           <i class="icon icon-qq"></i>
@@ -441,7 +458,7 @@ plt.show()
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《主成分分析（PCA）》 — 吴光生的主页&url=https://www.chinawgs.cn/2019/06/04/pca/&via=https://www.chinawgs.cn" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《主成分分析（PCA）》 — Guangsheng Wu | Homepage&url=https://www.chinawgs.cn/2019/06/04/pca/&via=https://www.chinawgs.cn" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
@@ -621,7 +638,7 @@ plt.show()
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://www.chinawgs.cn/2019/06/04/pca/&title=《主成分分析（PCA）》 — 吴光生的主页&pic=https://www.chinawgs.cn/img/wgs.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://www.chinawgs.cn/2019/06/04/pca/&title=《主成分分析（PCA）》 — Guangsheng Wu | Homepage&pic=https://www.chinawgs.cn/img/wgs.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -631,7 +648,7 @@ plt.show()
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://www.chinawgs.cn/2019/06/04/pca/&title=《主成分分析（PCA）》 — 吴光生的主页&source=1. 主成分分析优点：降低数据的复杂性，识别最重要的多个特征。
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://www.chinawgs.cn/2019/06/04/pca/&title=《主成分分析（PCA）》 — Guangsheng Wu | Homepage&source=1. 主成分分析优点：降低数据的复杂性，识别最重要的多个特征。
 缺点：不一定需要，且可能损失有用信息。
 使用数据类型：数值型数据" data-title=" QQ">
           <i class="icon icon-qq"></i>
@@ -643,7 +660,7 @@ plt.show()
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《主成分分析（PCA）》 — 吴光生的主页&url=https://www.chinawgs.cn/2019/06/04/pca/&via=https://www.chinawgs.cn" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《主成分分析（PCA）》 — Guangsheng Wu | Homepage&url=https://www.chinawgs.cn/2019/06/04/pca/&via=https://www.chinawgs.cn" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>

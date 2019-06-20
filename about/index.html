@@ -8,33 +8,50 @@
     
 
 
+<!-- Baidu Push -->
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<!-- End Baidu Push -->
+
 
     <meta charset="utf-8">
     
     
     
     
-    <title>About me | 吴光生的主页</title>
+    <title>About me | Guangsheng Wu | Homepage</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
     
     
     <meta name="keywords" content="吴光生,学习笔记,机器学习,深度学习,人工智能,统计学习,武汉大学,计算机,博客,主页,生物信息,科研,学术,研究生,博士">
-    <meta name="description" content="吴光生的个人主页">
+    <meta name="description" content="吴光生的个人主页, Homepage of Guangsheng Wu">
 <meta name="keywords" content="吴光生,学习笔记,机器学习,深度学习,人工智能,统计学习,武汉大学,计算机,博客,主页,生物信息,科研,学术,研究生,博士">
 <meta property="og:type" content="website">
 <meta property="og:title" content="About me">
 <meta property="og:url" content="https://www.chinawgs.cn/about/index.html">
-<meta property="og:site_name" content="吴光生的主页">
-<meta property="og:description" content="吴光生的个人主页">
+<meta property="og:site_name" content="Guangsheng Wu | Homepage">
+<meta property="og:description" content="吴光生的个人主页, Homepage of Guangsheng Wu">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-12T02:18:49.996Z">
+<meta property="og:updated_time" content="2019-06-20T11:23:20.614Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="About me">
-<meta name="twitter:description" content="吴光生的个人主页">
+<meta name="twitter:description" content="吴光生的个人主页, Homepage of Guangsheng Wu">
     
-        <link rel="alternate" type="application/atom+xml" title="吴光生的主页" href="../atom.xml">
+        <link rel="alternate" type="application/atom+xml" title="Guangsheng Wu | Homepage" href="../atom.xml">
     
     <link rel="shortcut icon" href="../img/favicon.ico">
     <link rel="stylesheet" href="../css/style.css?v=1.7.2">
@@ -179,7 +196,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://www.chinawgs.cn/about/&title=《About me》 — 吴光生的主页&pic=https://www.chinawgs.cn/img/wgs.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://www.chinawgs.cn/about/&title=《About me》 — Guangsheng Wu | Homepage&pic=https://www.chinawgs.cn/img/wgs.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -189,7 +206,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://www.chinawgs.cn/about/&title=《About me》 — 吴光生的主页&source=吴光生的个人主页" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://www.chinawgs.cn/about/&title=《About me》 — Guangsheng Wu | Homepage&source=吴光生的个人主页, Homepage of Guangsheng Wu" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -199,7 +216,7 @@
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《About me》 — 吴光生的主页&url=https://www.chinawgs.cn/about/&via=https://www.chinawgs.cn" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《About me》 — Guangsheng Wu | Homepage&url=https://www.chinawgs.cn/about/&via=https://www.chinawgs.cn" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
@@ -231,6 +248,49 @@
 
 
         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <section class="comments" id="comments">
+        <div id="gitalk-container"></div>
+        <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+        <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+        <script>
+            var id = location.pathname
+            if (location.pathname.length > 50) {
+              id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+            }
+            const gitalk = new Gitalk({
+              clientID: '83437958b93c1923bb8c',
+              clientSecret: '5e77df83970d9528d9e3216146a2f13ec6d01c50',
+              repo: 'hexoBlogComments',
+              owner: 'wgs666',
+              admin: ['wgs666'],
+              id: id,      // Ensure uniqueness and length less than 50
+              title: document.title.split('|')[0],
+              distractionFreeMode: false  // Facebook-like distraction free mode
+            })
+            gitalk.render('gitalk-container')
+        </script>
+    </section>
+
+
 
     </article>
     
@@ -319,7 +379,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://www.chinawgs.cn/about/&title=《About me》 — 吴光生的主页&pic=https://www.chinawgs.cn/img/wgs.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://www.chinawgs.cn/about/&title=《About me》 — Guangsheng Wu | Homepage&pic=https://www.chinawgs.cn/img/wgs.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -329,7 +389,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://www.chinawgs.cn/about/&title=《About me》 — 吴光生的主页&source=吴光生的个人主页" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://www.chinawgs.cn/about/&title=《About me》 — Guangsheng Wu | Homepage&source=吴光生的个人主页, Homepage of Guangsheng Wu" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -339,7 +399,7 @@
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《About me》 — 吴光生的主页&url=https://www.chinawgs.cn/about/&via=https://www.chinawgs.cn" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《About me》 — Guangsheng Wu | Homepage&url=https://www.chinawgs.cn/about/&via=https://www.chinawgs.cn" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
