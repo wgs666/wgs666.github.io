@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.chinawgs.cn/"/>
-  <updated>2019-06-18T10:53:53.094Z</updated>
+  <updated>2019-07-09T10:10:03.498Z</updated>
   <id>https://www.chinawgs.cn/</id>
   
   <author>
@@ -15,6 +15,58 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>t</title>
+    <link href="https://www.chinawgs.cn/2019/07/09/t/"/>
+    <id>https://www.chinawgs.cn/2019/07/09/t/</id>
+    <published>2019-07-09T10:09:16.000Z</published>
+    <updated>2019-07-09T10:10:03.498Z</updated>
+    
+    <content type="html"><![CDATA[<p>这是台式机上新建的内容，仅用于测试多台电脑操作。<br>希望在笔记本上删除。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;这是台式机上新建的内容，仅用于测试多台电脑操作。&lt;br&gt;希望在笔记本上删除。&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+      <category term="学习笔记" scheme="https://www.chinawgs.cn/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="机器学习" scheme="https://www.chinawgs.cn/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>tt</title>
+    <link href="https://www.chinawgs.cn/2019/07/09/tt/"/>
+    <id>https://www.chinawgs.cn/2019/07/09/tt/</id>
+    <published>2019-07-09T09:10:10.000Z</published>
+    <updated>2019-07-09T10:08:51.547Z</updated>
+    
+    <content type="html"><![CDATA[<p>仅用于测试一下多台电脑操作……<br>之前的是在笔记本电脑上的操作，现在台式机上新增本行内容，测试……</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;仅用于测试一下多台电脑操作……&lt;br&gt;之前的是在笔记本电脑上的操作，现在台式机上新增本行内容，测试……&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+      <category term="学习笔记" scheme="https://www.chinawgs.cn/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="机器学习" scheme="https://www.chinawgs.cn/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
   
   <entry>
     <title>贝叶斯估计</title>
