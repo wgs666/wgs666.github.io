@@ -254,57 +254,13 @@
     
         <p>起因：现在电脑上安装的是Anaconda 3（Python 3），几年前写的代码当时用的Python 2，当时肯定是调试成功了的，现在运行时一大堆报错，并不仅仅是print后面没加括号这种简单的问题，还有很多依赖包提示找不到或者过期，一个个去改正代码太麻烦，于是想到在电脑上同时安装一下Python 2环境。（这里也忍不住吐槽，为什么Python 3不能兼容Python 2呢？）</p>
 <p>解决方案：安装Python 2虚拟环境</p>
-<p>步骤：</p>
-<ol>
-<li><p>创建一个名叫py27的虚拟环境。在命令提示符下输入：</p>
-<pre><code>conda create -n py27 python=2.7
-</code></pre><p>也可创建一个包含了某些依赖包的环境，比如能支持我这个几年前代码的环境：</p>
-<pre><code>conda create -n py27 numpy=1.11.3 matplotlib=2.0.0 scikit-learn=0.18.1 scipy=0.18.1 networkx=1.11 python=2.7.13
-</code></pre></li>
-<li><p>激活虚拟环境py27。在命令提示符下输入：</p>
-<pre><code>activate py27
-</code></pre><p>以上为windows下的命令。如果在linux下，则换成：</p>
-<pre><code>source activate py27
-</code></pre></li>
-<li><p>如果在安装的虚拟环境中，某个依赖包的版本不对，需要更改，则使用pip命令安装指定版本的依赖包，例如：</p>
-<pre><code>pip install scikit-learn==0.20.0
-</code></pre></li>
-<li><p>安装好了虚拟环境，则可以在命令行中通过python命令正常使用了。别的集成开发环境中，可能需要在软件中设置使用哪个版本的Python。</p>
-<p>这里以简洁的Sublime Text为例，需要再增加一个Build选项。</p>
-<p>步骤：菜单Tools—&gt;Build System—&gt;New Build System…</p>
-<p>会新建一个名为untitled.sublime-build文件，将里面的内容更改为：</p>
-<pre><code>{
-   &quot;cmd&quot;: [&quot;C:/Users/Dell/Anaconda3/envs/py27/python.exe&quot;, &quot;-u&quot;, &quot;$file&quot;],
-   &quot;file_regex&quot;: &quot;^[ ]*File \&quot;(...*?)\&quot;, line ([0-9]*)&quot;,
-   &quot;selector&quot;: &quot;source.python&quot;,
-   &quot;encoding&quot;:&quot;cp936&quot;,
-   &quot;shell&quot;:&quot;true&quot;
-}
-</code></pre><p>其中，”C:/Users/Dell/Anaconda3/envs/py27/python.exe”是安装的新版本Python 2的路径，如果是按照第一步的方法创建的，那么路径类似。前半部分路径”C:/Users/Dell/Anaconda3/“是我原来电脑上Anaconda3的路径，您电脑上的请做相应修改。</p>
-<p>文件内容修改完毕后，将文件名保存为Python27.sublime-build，这时，可以看到菜单Tools—&gt;Build System下多了一个Python27命令，将其勾选，执行Build命令（快捷键Ctrl+B）时，已经可以正常执行代码了。</p>
-</li>
-<li><p>如果需要删除该虚拟环境py27，使用命令：</p>
-<pre><code>conda remove -n py27 --all
-</code></pre></li>
-<li><p>如果想备份你的某个安装好了各种依赖包的虚拟环境py27，方便移植到另一台电脑使用，则可以使用以下命令将当前环境进行导出：</p>
-<pre><code>conda env export &gt; py27.yaml
-</code></pre><p>会生成一个py27.yaml的文件（文件在哪里，可查看当前命令行的路径，存放在该路径下）</p>
-<p>将这个文件复制到目标电脑上，执行以下命令导入该环境（命令行要切换到该文件路径）：</p>
-<pre><code>conda env create -f py27.yaml
-</code></pre><p>导入环境后，如果在执行程序时，发现某些module还是没有安装，可能原来的环境中存在一些依赖包是用pip安装的，此时可以将原电脑中使用pip安装的所有包备份一下，然后到新电脑上安装：</p>
-<p>（1）在原电脑上使用pip命令导出依赖包列表，存为文件27.txt</p>
-<pre><code>pip freeze &gt; 27.txt
-</code></pre><p>（2）将文件27.txt复制到新电脑，使用pip命令按照这个列表重新安装一遍这些依赖包</p>
-<pre><code>pip install -r 27.txt
-</code></pre></li>
-</ol>
-
+<p>步骤：
     
 
         <a href="2019/07/24/python3and2/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
-    </div>
+    </p></div>
     
     <div class="post-footer">
         
